@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=Monoton&family=News+Cycle:wght@400;700&display=swap');
+
+
+$hero-page : 'Monoton', cursive;
+$text-font : 'News Cycle', sans-serif;
+
+$bg-white: rgba(255,255,255);
+$bg-black: rgba(0,0,0);
+$text-white: rgba(235,235,235);
+$text-black: rgba(20,20,20);
+$text-gray: rgb(121, 119, 119);
+$primary: #46a4b9;
+
+
+$spacing-sm: 8px;
+$spacing-md: 16px;
+$spacing-lg: 32px;
+
+$header-height: 80px;
+
+$sm: 37.5em;
+$md: 48em;
+$lg: 64em;
+$xlg:75em;
+
+@mixin breakpoint($point){
+    @if $point == md {
+        @media(min-width: $md){
+            @content;
+        }
+    }
+};
+
+@mixin breakpoint($point){
+    @if $point == lg {
+        @media(min-width: $lg){
+            @content;
+        }
+    }
+};
+
+@mixin breakpoint($point){
+    @if $point == xlg {
+        @media(min-width: $xlg){
+            @content;
+        }
+    }
+};
