@@ -3,7 +3,7 @@ import logger from "morgan";
 import { config } from "dotenv";
 import cors from "cors";
 import Connect from "./lib/db.js";
-import userRouter from "./routes/UserRouter.js";
+import communityRouter from './routes/communityRouter.js'
 
 config();
 Connect();
@@ -17,14 +17,7 @@ server.use(express.urlencoded({ extended: false }));
 server.use(cors());
 ///middleware
 //routers
-server.use("/api/user", userRouter);
-
-// handle the errors
-server.use((err, req, res, next) => {
-  res
-    .status(err.status || 500)
-    .send(err || { message: "Something went Wrong!" });
-});
+server.use('/community',communityRouter)
 
 server.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
