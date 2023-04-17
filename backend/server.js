@@ -16,7 +16,6 @@ server.use(logger("dev"));
 server.use(express.urlencoded({ extended: false }));
 server.use(cors());
 ///middleware
-
 //routers
 server.use('/community',communityRouter)
 

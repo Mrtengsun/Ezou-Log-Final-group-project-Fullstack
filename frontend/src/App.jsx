@@ -1,9 +1,12 @@
-import React from 'react'
+import Index from "./components/Index";
+
 
 const App = () => {
   return (
-    <div><h1>Francis, Emmanuel, Diouani, Teng, WELCOME TO OUR FINAL PROJECT EZOU LOG</h1></div>
-  )
-}
+    <div>
+      <Index />
+    </div>
+  );
+};
 
-export default App
+export default App;
