@@ -2,7 +2,6 @@ import User from "../models/User.js";
 import sendEmail from "../middlewares/sendEmail.js";
 import createErr from "http-errors";
 import jwt from "jsonwebtoken";
-import checkAuth from "../middlewares/CheckAuth.js";
 
 const register = async (req, res, next) => {
   try {
