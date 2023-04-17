@@ -1,7 +1,7 @@
-import FrontPage from "./Frontpage/FrontPage";
+// import FrontPage from "./Frontpage/FrontPage.jsx";
 
-const Index = () => {
-  return <div><FrontPage/></div>;
-};
+// const Index = () => {
+//   return <div><FrontPage/></div>;
+// };
 
-export default Index;
+// export default Index;
