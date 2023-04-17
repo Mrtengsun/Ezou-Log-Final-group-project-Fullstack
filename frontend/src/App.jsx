@@ -1,11 +1,16 @@
-import Index from "./components/Index";
+
+
+import MainPath from "./components/mainPath/MainPath.jsx";
 
 
 const App = () => {
   return (
-    <div>
-      <Index />
-    </div>
+
+      <div>
+      <MainPath/>
+
+      </div>
+    
   );
 };
 
