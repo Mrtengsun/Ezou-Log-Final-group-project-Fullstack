@@ -1,0 +1,28 @@
+@import "../../style/variable.scss";
+.CommunityPop {
+  position: fixed;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: transparent;
+  .popUpWindow {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    margin-left: 30%;
+    margin-top: 10%;
+    width: 30rem;
+    height: 40rem;
+    background-color: gray;
+    .popUpButtons {
+      height: 4rem;
+
+      background-color: $primary;
+      display: flex;
+
+      flex-wrap: wrap;
+      justify-content: space-around;
+    }
+  }
+}
