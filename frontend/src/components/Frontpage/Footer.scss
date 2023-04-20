@@ -1,0 +1,56 @@
+@import "../../style/variable.scss";
+
+.footer {
+  background-color: rgba($text-gray, 0.08);
+  text-align: center;
+  height: auto;
+
+  h5 {
+    color: $text-gray;
+    padding: 3rem;
+  }
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ }
+ 
+ .app {
+  &-btn {
+   width: 45%;
+   max-width: 160px;
+   color: $text-black;
+   margin: 20px 10px;
+   text-align: left;
+   border-radius: 10px;
+   text-decoration: none;
+   font-family: "Lucida Grande", sans-serif;
+   font-size: 10px;
+   text-transform: uppercase;
+   &.blu {
+    background-color:$text-gray;
+    transition: background-color 0.25s linear;
+    &:hover {
+     background-color: #454545;
+    }
+   }
+   img {
+    width: 20%;
+    text-align: center;
+    font-size: 38px;
+    margin-right: 7px;
+   }
+   .img_google_desktop{
+    margin:  0.4rem;
+   }
+   .img_desktop{
+    margin: 0.5rem;
+   }
+   .big-txt {
+    font-size: 17px;
+    text-transform: capitalize;
+   }
+  }
+ }
