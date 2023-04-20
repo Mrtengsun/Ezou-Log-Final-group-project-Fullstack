@@ -3,7 +3,9 @@ import {
   conformedEmail,
   logIn,
   register,
-} from "../controllers/UserController.js";
+  update,
+} from "../controllers/userController.js";
+import checkAuth from "../middlewares/CheckAuth.js";
 
 const router = express.Router();
 
@@ -12,5 +14,6 @@ router.post("/register", register);
 router.get("/register", conformedEmail);
 
 router.post("/login", logIn);
+router.put("/update", checkAuth, update);
 
 export default router;

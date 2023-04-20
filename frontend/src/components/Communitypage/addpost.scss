@@ -1,0 +1,25 @@
+@import "../../style/variable.scss";
+.addpost {
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  color: $bg-white;
+  #addbutton {
+    margin: 1rem;
+    width: 10rem;
+    height: 3rem;
+    border-radius: 0.5rem;
+    background-color: $primary;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: large;
+    font-weight: bolder;
+    .fa-solid {
+      padding-top: 0.3rem;
+      padding-right: 0.3rem;
+      font-weight: 900;
+    }
+  }
+}
