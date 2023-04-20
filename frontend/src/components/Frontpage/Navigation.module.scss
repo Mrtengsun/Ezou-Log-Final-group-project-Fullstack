@@ -4,7 +4,7 @@
   height: $header-height;
   background: $bg-white;
   border-bottom: 0.2rem solid $primary;
-  color: $text-black;
+  color: $text-gray;
   position: fixed;
   z-index: 100;
   width: 100%;
@@ -22,6 +22,10 @@
     // justify-content: space-around;
     margin: 0 0.7rem;
     align-items: center;
+
+    .logo{
+      color: $text-logo;
+    }
 
     & > div {
       flex: 1;
@@ -60,7 +64,7 @@
   position: fixed;
   top: $header-height;
   right: -100%;
-  background: rgba($primary, 0.2);
+  background: rgba($text-white, 1);
   text-align: center;
   padding: $spacing-md;
 
@@ -80,7 +84,7 @@
     height: 100%;
     transition: 0.3s ease color;
     &:hover {
-      color: $bg-white;
+      color: $primary;
     }
   }
 }
@@ -145,14 +149,28 @@
 //   }
 // }
 .loginbutton {
-  padding: 0.2rem 1rem;
+  padding: 0.5rem 1rem;
   transition: 0.3s ease color;
   background-color: $primary;
   color: $text-white;
-  border-radius: 0.5rem;
+  border-radius: 10px;
   margin-left: 2rem;
   cursor: pointer;
   &:hover {
     color: $text-gray;
+    background-color: rgba($primary, 0.8);
+  }
+}
+
+
+.avatar__logout{
+ 
+  display: flex;
+  justify-content: center;
+  .avatar{
+    width: 3rem;
+    border-radius: 50%;
+    cursor: pointer;
+    
   }
 }

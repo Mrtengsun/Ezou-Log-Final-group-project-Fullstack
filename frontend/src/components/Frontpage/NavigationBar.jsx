@@ -31,7 +31,15 @@ const NavigationBar = () => {
             <label for="checkbox1"></label>
           </div> */}
 
-          <button className={styles.loginbutton}>Login</button>
+          <div >
+            {/* //login in button will display when user is not log in */}
+            {/* <button className={styles.loginbutton}>Login</button> */}
+            {/* logout and avater will display when user is log in  */}
+            <div className={styles.avatar__logout}>
+              <img src="/images/Neytiri_Profilbild.webp" alt="" className={styles.avatar}/>
+              <button className={styles.loginbutton}>LogOut</button>
+            </div>
+          </div>
 
           <button className={styles.__open} onClick={menuToggler}>
             {!menuOpen ? <BiMenuAltRight /> : <AiOutlineCloseSquare />}

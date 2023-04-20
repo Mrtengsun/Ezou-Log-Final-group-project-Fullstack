@@ -1,0 +1,36 @@
+@import "../../style/variable.scss";
+
+.card{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    perspective: 600px;
+    .innercard{
+        padding: 0.8rem;
+        border-radius: 10px;
+        width: fit-content;
+        box-shadow: 0.2rem 0.2rem 0.5rem $text-gray;
+        transition: transform 2000ms;
+        transform-style: preserve-3d;
+
+        &:hover{
+            cursor: pointer;
+            transform: rotateY(180deg);
+        }
+        .qrcode{
+            width: 15rem;
+            height: 15rem;
+            align-items: center;
+        }
+        h3{
+            color:$text-gray;
+            font-family: $text-font;
+        }
+        h4{
+            color: $text-logo;
+        }
+
+    }
+  
+}

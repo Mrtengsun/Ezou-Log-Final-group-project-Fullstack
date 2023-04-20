@@ -1,0 +1,38 @@
+@import "../../style/variable.scss";
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  .header {
+    font-family: $hero-page;
+    color: $text-gray;
+    font-size: 4rem;
+    width: fit-content;
+  }
+  .buttm {
+    background: $primary;
+    padding: 0.8rem 1.5rem;
+    margin: 2rem;
+    border-radius: 10px;
+    color: $text-white;
+    font-family: $text-font;
+    cursor: pointer;
+
+    &:hover {
+      color: $text-gray;
+      background-color: rgba($primary, 0.8);
+    }
+  }
+}
+
+@media screen and (max-width: 1050px) {
+  .hero {
+    .header {
+      font-size: 3.4rem;
+    }
+  }
+}
