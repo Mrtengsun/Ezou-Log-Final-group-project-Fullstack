@@ -1,6 +1,6 @@
 import User from "../models/UserModel.js";
 import sendEmail from "../middlewares/sendEmail.js";
-import creatErr from "http-errors";
+import createErr from "http-errors";
 import jwt from "jsonwebtoken";
 
 const register = async (req, res, next) => {
@@ -27,7 +27,7 @@ const register = async (req, res, next) => {
         `
     );
   } catch (error) {
-    next(creatErr(401, error));
+    next(createErr(401, error));
   }
 };
 const conformedEmail = async (req, res, next) => {
@@ -39,7 +39,7 @@ const conformedEmail = async (req, res, next) => {
 
     res.redirect("https://##########/login");
   } catch (error) {
-    next(creatErr(401, error));
+    next(createErr(401, error));
   }
 };
 
@@ -57,15 +57,30 @@ const logIn = async (req, res, next) => {
       return next(creatErr(401, "InvInvalid email or password"));
     }
     if (!loginUser.verified)
-      return next(creatErr(404, "please conform your email"));
+      return next(createErr(404, "please conform your email"));
     const createToken = jwt.sign({ id: loginUser._id }, process.env.SECRET, {
       expiresIn: `${60 * 24}m`,
     });
 
     res.send({ user: loginUser, token: createToken });
   } catch (error) {
-    next(creatErr(401, error));
+    next(createErr(401, error));
   }
 };
 
-export { register, conformedEmail, logIn };
+const update = async (req, res, next) => {
+  try {
+    const userUpdate = await User.findByIdAndUpdate(
+      { _id: req.userId },
+      req.body,
+      {
+        new: true,
+      }
+    );
+    res.send(userUpdate);
+  } catch (error) {
+    next(createErr(401, error));
+  }
+};
+
+export { register, conformedEmail, logIn, update };
