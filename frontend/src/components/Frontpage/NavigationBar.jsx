@@ -31,12 +31,16 @@ const NavigationBar = () => {
             <label for="checkbox1"></label>
           </div> */}
 
-          <div >
+          <div>
             {/* //login in button will display when user is not log in */}
             {/* <button className={styles.loginbutton}>Login</button> */}
             {/* logout and avater will display when user is log in  */}
             <div className={styles.avatar__logout}>
-              <img src="/images/Neytiri_Profilbild.webp" alt="" className={styles.avatar}/>
+              <img
+                src="/images/Neytiri_Profilbild.webp"
+                alt=""
+                className={styles.avatar}
+              />
               <button className={styles.loginbutton}>LogOut</button>
             </div>
           </div>
