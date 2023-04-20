@@ -1,15 +1,23 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
 const { Schema, model } = mongoose;
+const commentSchema = new Schema({
+  author: [{ type: Schema.Types.ObjectId, ref: "user" }],
+  text: { type: String, required: true, trim: true },
+});
 
-const communitySchema = new Schema({
- author: [{ type: Schema.Types.ObjectId, ref: 'User' }],
- description: { type: String, required: true,trim:true },
- comments: [{ type: Schema.Types.ObjectId,ref:'User',trim:true,default:Date.now(),text:String }],
- topic:{type:String,required:true},
- likes:[{type:Schema.Types.ObjectId,ref:'User',type:Date,default:Date.now()}],
- avatar: {type:String, data: Buffer},
-}, { _id: false },{timestamps:true})
+const communitySchema = new Schema(
+  {
+    author: [{ type: Schema.Types.ObjectId, ref: "user" }],
+    topic: { type: String, required: true },
+    description: { type: String, required: true, trim: true },
+    comments: [{ type: commentSchema }],
+    likes: [{ type: Schema.Types.ObjectId, ref: "user" }],
+    avatar: { type: String, data: Buffer },
+  },
 
-const Community = model('User', communitySchema)
-export default Community
+  { timestamps: true }
+);
+
+const Community = model("community", communitySchema);
+export default Community;
