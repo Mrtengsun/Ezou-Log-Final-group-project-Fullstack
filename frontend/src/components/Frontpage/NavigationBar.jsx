@@ -35,15 +35,15 @@ const NavigationBar = () => {
 
           <div>
             {/* //login in button will display when user is not log in */}
-            {/* <button className={styles.loginbutton}>Login</button> */}
+            <button className={styles.loginbutton}><Link to="/login">Login</Link></button>
             {/* logout and avater will display when user is log in  */}
             <div className={styles.avatar__logout}>
-              <img
+              {/* <img
                 src="/images/Neytiri_Profilbild.webp"
                 alt=""
                 className={styles.avatar}
               />
-              <button className={styles.loginbutton}>LogOut</button>
+              <button className={styles.loginbutton}>LogOut</button> */}
             </div>
           </div>
 
