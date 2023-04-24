@@ -25,6 +25,8 @@
 
     .logo {
       color: $text-logo;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: bold;
     }
 
     & > div {
@@ -54,11 +56,6 @@
   }
 }
 
-.logo {
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  color: $text-black;
-}
 .list {
   width: 100%;
   position: fixed;
@@ -171,3 +168,5 @@
     cursor: pointer;
   }
 }
+
+
