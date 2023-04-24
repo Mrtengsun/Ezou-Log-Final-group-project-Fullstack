@@ -1,23 +1,23 @@
-// import NavigationBar from "./NavigationBar";
+import NavigationBar from "./NavigationBar";
 import HeroComponents from "./HeroComponents";
 import CardComponents from "../Card/CardComponents";
-// import Footer from "./Footer";
+import Footer from "./Footer";
 import styles from "./Frontpage.module.scss";
 
 const FrontPage = () => {
   return (
     <div>
       <div className={styles.frontpage}>
-        <div >
-          {/* <NavigationBar /> */}
+        <div>
+          <NavigationBar />
         </div>
         <div className={styles.hero__card}>
           <HeroComponents />
           <CardComponents />
         </div>
       </div>
-      <div >
-        {/* <Footer /> */}
+      <div>
+        <Footer />
       </div>
     </div>
   );
