@@ -6,10 +6,20 @@ const CommunityContextProvider = ({ children }) => {
   const [popUp, setPopUp] = useState(false);
   const titleInput = useRef();
   const descriptionInput = useRef();
+  const searchInput = useRef();
+  const [search, setSearch] = useState(null);
 
   return (
     <CommunityContext.Provider
-      value={{ popUp, setPopUp, titleInput, descriptionInput }}
+      value={{
+        popUp,
+        setPopUp,
+        titleInput,
+        descriptionInput,
+        searchInput,
+        search,
+        setSearch,
+      }}
     >
       {children}
     </CommunityContext.Provider>

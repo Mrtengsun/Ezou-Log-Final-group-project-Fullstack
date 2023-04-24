@@ -23,7 +23,7 @@
     margin: 0 0.7rem;
     align-items: center;
 
-    .logo{
+    .logo {
       color: $text-logo;
     }
 
@@ -162,15 +162,12 @@
   }
 }
 
-
-.avatar__logout{
- 
+.avatar__logout {
   display: flex;
   justify-content: center;
-  .avatar{
+  .avatar {
     width: 3rem;
     border-radius: 50%;
     cursor: pointer;
-    
   }
 }
