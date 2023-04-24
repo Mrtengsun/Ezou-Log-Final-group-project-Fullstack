@@ -6,6 +6,7 @@ import AboutUs from "../Aboutus/AboutUs.jsx";
 import Footer from "../Frontpage/Footer.jsx";
 import styles from "../Frontpage/Frontpage.module.scss";
 import LoginComponent from "../Loginprocess/LoginComponent.jsx";
+import CreateAccount from "../Loginprocess/CreateAccount.jsx";
 
 const MainPath = () => {
   return (
