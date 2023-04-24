@@ -1,11 +1,8 @@
 import React from "react";
 import "./Footer.scss";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { fa5 } from "@fortawesome/free-solid-svg-icons";
+
 
 const Footer = () => {
-  const iOSUrl =
-    "https://itunes.apple.com/us/app/all-of-the-lights/id959389722?mt=8";
   const d = new Date();
   return (
     <div className="footer">
@@ -43,7 +40,7 @@ const Footer = () => {
         </div>
       </div>
       <div>
-        <h5>Copyright Reserve by Ezou Log {d.getFullYear()}</h5>
+        <h5>Copyright Reserve &copy; Ezou Log {d.getFullYear()}</h5>
       </div>
     </div>
   );
