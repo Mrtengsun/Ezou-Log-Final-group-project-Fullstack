@@ -6,13 +6,11 @@ import Footer from "../Frontpage/Footer.jsx";
 
 const CommunityPage = () => {
   return (
+    // {/* <div>
+    //   <NavigationBar />
+    // </div> */}
     <div className="community">
-      {/* <div>
-        <NavigationBar />
-      </div> */}
-
       <SearchBar />
-
       <AddPost />
     </div>
   );
