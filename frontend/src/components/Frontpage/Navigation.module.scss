@@ -23,8 +23,10 @@
     margin: 0 0.7rem;
     align-items: center;
 
-    .logo{
+    .logo {
       color: $text-logo;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: bold;
     }
 
     & > div {
@@ -54,11 +56,6 @@
   }
 }
 
-.logo {
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  color: $text-black;
-}
 .list {
   width: 100%;
   position: fixed;
@@ -162,15 +159,14 @@
   }
 }
 
-
-.avatar__logout{
- 
+.avatar__logout {
   display: flex;
   justify-content: center;
-  .avatar{
+  .avatar {
     width: 3rem;
     border-radius: 50%;
     cursor: pointer;
-    
   }
 }
+
+

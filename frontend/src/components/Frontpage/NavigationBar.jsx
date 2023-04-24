@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import styles from "./Navigation.module.scss";
 import { BiMenuAltRight } from "react-icons/bi";
 import { AiOutlineCloseSquare } from "react-icons/ai";
+import { Link } from "react-router-dom";
+
 
 const NavigationBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -20,9 +22,9 @@ const NavigationBar = () => {
           <ul
             className={`${styles.list} ${menuOpen ? styles[`list--open`] : {}}`}
           >
-            <li className={styles.list__items}>Home</li>
-            <li className={styles.list__items}>Community</li>
-            <li className={styles.list__items}>About us</li>
+            <li className={styles.list__items}><Link className={styles.link} to="/">Home</Link></li>
+            <li className={styles.list__items}><Link to="/">Community</Link></li>
+            <li className={styles.list__items}><Link to="/aboutus">About us</Link></li>
           </ul>
         </div>
         <div>
@@ -31,12 +33,16 @@ const NavigationBar = () => {
             <label for="checkbox1"></label>
           </div> */}
 
-          <div >
+          <div>
             {/* //login in button will display when user is not log in */}
             {/* <button className={styles.loginbutton}>Login</button> */}
             {/* logout and avater will display when user is log in  */}
             <div className={styles.avatar__logout}>
-              <img src="/images/Neytiri_Profilbild.webp" alt="" className={styles.avatar}/>
+              <img
+                src="/images/Neytiri_Profilbild.webp"
+                alt=""
+                className={styles.avatar}
+              />
               <button className={styles.loginbutton}>LogOut</button>
             </div>
           </div>
