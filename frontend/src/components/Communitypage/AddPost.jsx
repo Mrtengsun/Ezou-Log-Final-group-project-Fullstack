@@ -44,18 +44,16 @@ const AddPost = () => {
         ADD POST
       </button>
       <CommunityPopUp trigger={popUp} setTrigger={setPopUp}>
-        <form action="">
+        <form action="/addpost">
           <h1>Ask me</h1>
-          <tr>
-            <input type="text" placeholder="Title" ref={titleInput} />
-          </tr>
-          <tr>
-            <textarea
-              type="text"
-              placeholder="Description"
-              ref={descriptionInput}
-            />
-          </tr>
+
+          <input type="text" placeholder="Title" ref={titleInput} />
+
+          <textarea
+            type="text"
+            placeholder="Description"
+            ref={descriptionInput}
+          />
         </form>
         <div className="popUpButtons">
           <button onClick={submitHandler}>Submit</button>
