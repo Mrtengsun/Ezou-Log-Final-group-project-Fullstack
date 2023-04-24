@@ -1,7 +1,7 @@
 import React from "react";
 import "./Footer.scss";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { fa5 } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import { fa5 } from "@fortawesome/free-solid-svg-icons";
 
 const Footer = () => {
   const iOSUrl =
@@ -19,14 +19,22 @@ const Footer = () => {
           </a>
 
           <a class="app-btn blu flex vert" href="http:google.com">
-            <img className="img_google_desktop" src="/images/google-play.svg" alt="google play icon" />
+            <img
+              className="img_google_desktop"
+              src="/images/google-play.svg"
+              alt="google play icon"
+            />
             <p>
               Get it on <br /> <span class="big-txt">Google Play</span>
             </p>
           </a>
 
           <a class="app-btn blu flex vert" href="http:alphorm.com">
-            <img className="img_desktop" src="/images/desktop-solid.svg" alt="desktop app icon" />
+            <img
+              className="img_desktop"
+              src="/images/desktop-solid.svg"
+              alt="desktop app icon"
+            />
 
             <p>
               Application <br /> <span class="big-txt">Desktop</span>
