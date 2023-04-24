@@ -21,17 +21,16 @@ return(<div>
   
 
         <Route path="/aboutus" element={<AboutUs/>}/>
-
+ 
         <Route path="/support"/>
-        <Route path="/login"/>
+         <Route path="/login" element={<LoginComponent />} />
         <Route path="/logout"/>
-        <Route path="/register"/>
+      <Route path="/register" element={<CreateAccount />} />
         <Route path="/*"/>
     
     </Routes>
     <div className={styles.footer}><Footer/></div>
 </div>)
 
-}
 
-export default MainPath
+export default MainPath;
