@@ -1,6 +1,7 @@
 import React from "react";
 import "./Footer.scss";
 
+
 const Footer = () => {
   const d = new Date();
   return (
