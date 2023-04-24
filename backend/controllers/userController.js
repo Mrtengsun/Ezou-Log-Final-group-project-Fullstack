@@ -1,11 +1,14 @@
 import User from "../models/UserModel.js";
 import sendEmail from "../middlewares/sendEmail.js";
-import createErr from "http-errors";
+import creatErr from "http-errors";
 import jwt from "jsonwebtoken";
-
+import QRCode from "qrcode";
 const register = async (req, res, next) => {
   try {
     const newUser = await User.create(req.body);
+    const qrCode = await QRCode.toDataURL(JSON.stringify(newUser));
+    newUser.qrCode = qrCode;
+    await newUser.save();
     res.send(newUser);
     // sending email to conformed the user email
     const sendingEmail = await sendEmail(
@@ -27,7 +30,7 @@ const register = async (req, res, next) => {
         `
     );
   } catch (error) {
-    next(createErr(401, error));
+    next(creatErr(401, error));
   }
 };
 const conformedEmail = async (req, res, next) => {
@@ -39,7 +42,7 @@ const conformedEmail = async (req, res, next) => {
 
     res.redirect("https://##########/login");
   } catch (error) {
-    next(createErr(401, error));
+    next(creatErr(401, error));
   }
 };
 
@@ -49,22 +52,22 @@ const logIn = async (req, res, next) => {
 
     // Find the user with the matching email
     const loginUser = await User.findOne({ email });
-    if (!loginUser) return next(creatErr(401, "InvInvalid email or password"));
+    if (!loginUser) return next(creatErr(401, " InvInvalid email or password"));
 
     // Check if the password is correct
     const isMatch = await loginUser.comparePassword(password);
-    if (!isMatch) {
+    if (isMatch) {
       return next(creatErr(401, "InvInvalid email or password"));
     }
     if (!loginUser.verified)
-      return next(createErr(404, "please conform your email"));
+      return next(creatErr(404, "please conform your email"));
     const createToken = jwt.sign({ id: loginUser._id }, process.env.SECRET, {
       expiresIn: `${60 * 24}m`,
     });
 
     res.send({ user: loginUser, token: createToken });
   } catch (error) {
-    next(createErr(401, error));
+    next(creatErr(401, error));
   }
 };
 
@@ -79,7 +82,7 @@ const update = async (req, res, next) => {
     );
     res.send(userUpdate);
   } catch (error) {
-    next(createErr(401, error));
+    next(creatErr(401, error));
   }
 };
 

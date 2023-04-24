@@ -1,6 +1,4 @@
 import express from "express";
-import Community from "../models/CommunityModel.js";
-import creatErr from "http-errors";
 import {
   addComment,
   addLike,

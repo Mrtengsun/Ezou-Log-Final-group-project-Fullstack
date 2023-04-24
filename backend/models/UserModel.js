@@ -79,6 +79,7 @@ const userSchema = new Schema(
       default: false,
     },
     communities: [{ type: Schema.Types.ObjectId, ref: "community" }],
+    qrCode: { type: String },
   },
   {
     toJSON: {
@@ -91,7 +92,7 @@ const userSchema = new Schema(
     timestamps: true,
   }
 );
-// Hash the password before saving the admin to the database
+// Hash the password before saving the user to the database
 userSchema.pre("save", async function () {
   try {
     const hashPassword = await hash(this.password, 10);
@@ -105,6 +106,7 @@ userSchema.pre("save", async function () {
 userSchema.methods.comparePassword = async function (candidatePassword) {
   try {
     const isMatch = await compare(candidatePassword, this.password);
+    console.log(isMatch);
     return isMatch;
   } catch (error) {
     throw new Error(error);
