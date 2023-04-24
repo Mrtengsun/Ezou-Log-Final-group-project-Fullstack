@@ -1,9 +1,9 @@
 import { body, validationResult } from "express-validator";
-import creatErr from "http-errors";
+import createErr from "http-errors";
 const emailValidator = async (req, res, next) => {
   await body("firstName")
     .exists()
-    .withMessage("firs tname is Required")
+    .withMessage("first name is Required")
     .trim()
     .run(req);
   await body("lastName")
@@ -56,7 +56,7 @@ const emailValidator = async (req, res, next) => {
     next();
     return;
   }
-  next(creatErr(401, err));
+  next(createErr(401, err));
 };
 
 export default emailValidator;

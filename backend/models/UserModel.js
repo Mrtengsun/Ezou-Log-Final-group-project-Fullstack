@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { compare, hash } from "bcrypt";
 
 const { Schema, model } = mongoose;
 const addressSchema = new Schema(
@@ -48,7 +49,6 @@ const userSchema = new Schema(
     },
     dateOfBirth: {
       type: Date,
-      required: true,
     },
     placeOfBirth: {
       type: String,
@@ -57,7 +57,6 @@ const userSchema = new Schema(
     gender: {
       type: String,
       required: true,
-      enum: ["male", "female"],
     },
     phoneNumber: {
       type: Number,
@@ -79,6 +78,7 @@ const userSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    communities: [{ type: Schema.Types.ObjectId, ref: "community" }],
   },
   {
     toJSON: {
@@ -91,5 +91,25 @@ const userSchema = new Schema(
     timestamps: true,
   }
 );
+// Hash the password before saving the admin to the database
+userSchema.pre("save", async function () {
+  try {
+    const hashPassword = await hash(this.password, 10);
+    this.password = hashPassword;
+  } catch (error) {
+    console.log(error);
+  }
+});
+// Add a method to the schema to compare passwords
+
+userSchema.methods.comparePassword = async function (candidatePassword) {
+  try {
+    const isMatch = await compare(candidatePassword, this.password);
+    return isMatch;
+  } catch (error) {
+    throw new Error(error);
+  }
+};
+
 const User = model("user", userSchema);
 export default User;

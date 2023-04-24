@@ -1,6 +1,6 @@
-import User from "../models/User.js";
+import User from "../models/UserModel.js";
 import sendEmail from "../middlewares/sendEmail.js";
-import creatErr from "http-errors";
+import createErr from "http-errors";
 import jwt from "jsonwebtoken";
 
 const register = async (req, res, next) => {
@@ -18,9 +18,7 @@ const register = async (req, res, next) => {
         <p>
     
             This email '${req.body.email}', is used to register in our app, <br>
-            please visit <a href="https://${"we need to add correct local host "}/api/user/register?userId=${
-        newUser._id
-      }">this link</a> To verify your email.
+            please visit <a href="http://localhost:5000/api/user/register?userId=${newUser._id}">this link</a> To verify your email.
             <br>
             If you not the owner, please ignore the message
             <br>
@@ -29,7 +27,7 @@ const register = async (req, res, next) => {
         `
     );
   } catch (error) {
-    next(creatErr(401, error));
+    next(createErr(401, error));
   }
 };
 const conformedEmail = async (req, res, next) => {
@@ -41,24 +39,48 @@ const conformedEmail = async (req, res, next) => {
 
     res.redirect("https://##########/login");
   } catch (error) {
-    next(creatErr(401, error));
+    next(createErr(401, error));
   }
 };
 
 const logIn = async (req, res, next) => {
   try {
-    const loginUser = await User.login(req.body);
-    if (!loginUser) return next(creatErr(401, "Invalid Data"));
+    const { email, password } = req.body;
+
+    // Find the user with the matching email
+    const loginUser = await User.findOne({ email });
+    if (!loginUser) return next(creatErr(401, "InvInvalid email or password"));
+
+    // Check if the password is correct
+    const isMatch = await loginUser.comparePassword(password);
+    if (!isMatch) {
+      return next(creatErr(401, "InvInvalid email or password"));
+    }
     if (!loginUser.verified)
-      return next(creatErr(404, "please conform your email"));
+      return next(createErr(404, "please conform your email"));
     const createToken = jwt.sign({ id: loginUser._id }, process.env.SECRET, {
       expiresIn: `${60 * 24}m`,
     });
 
     res.send({ user: loginUser, token: createToken });
   } catch (error) {
-    next(creatErr(401, error));
+    next(createErr(401, error));
   }
 };
 
-export { register, conformedEmail, logIn };
+const update = async (req, res, next) => {
+  try {
+    const userUpdate = await User.findByIdAndUpdate(
+      { _id: req.userId },
+      req.body,
+      {
+        new: true,
+      }
+    );
+    res.send(userUpdate);
+  } catch (error) {
+    next(createErr(401, error));
+  }
+};
+
+export { register, conformedEmail, logIn, update };
