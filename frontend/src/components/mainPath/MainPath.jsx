@@ -11,6 +11,8 @@ import CreateAccount from "../Loginprocess/CreateAccount.jsx";
 const MainPath = () => {
   return (
     <div>
+      <NavigationBar />
+
       <Routes>
         <Route path="/" element={<FrontPage />} />
 
@@ -24,6 +26,8 @@ const MainPath = () => {
         <Route path="/register" element={<CreateAccount />} />
         <Route path="/*" />
       </Routes>
+
+      <Footer />
     </div>
   );
 };

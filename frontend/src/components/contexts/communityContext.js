@@ -8,7 +8,8 @@ const CommunityContextProvider = ({ children }) => {
   const descriptionInput = useRef();
   const searchInput = useRef();
   const [search, setSearch] = useState(null);
-
+  const [thumbsUp, setThumbsUp] = useState(false);
+  const [comment, setComment] = useState(false);
   return (
     <CommunityContext.Provider
       value={{
@@ -19,6 +20,10 @@ const CommunityContextProvider = ({ children }) => {
         searchInput,
         search,
         setSearch,
+        thumbsUp,
+        setThumbsUp,
+        comment,
+        setComment,
       }}
     >
       {children}

@@ -8,17 +8,17 @@ const FrontPage = () => {
   return (
     <div>
       <div className={styles.frontpage}>
-        <div>
+        {/* <div>
           <NavigationBar />
-        </div>
+        </div> */}
         <div className={styles.hero__card}>
           <HeroComponents />
           <CardComponents />
         </div>
       </div>
-      <div>
+      {/* <div>
         <Footer />
-      </div>
+      </div> */}
     </div>
   );
 };
