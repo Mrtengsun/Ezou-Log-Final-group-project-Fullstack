@@ -25,11 +25,7 @@ const emailValidator = async (req, res, next) => {
     .isLength({ min: 6, max: 16 })
     .withMessage("password must have between 6 and 16 characters.")
     .run(req);
-  await body("dateOfBirth")
-    .exists()
-    .withMessage("Date of birth is Required")
-    .trim()
-    .run(req);
+
   await body("placeOfBirth")
     .exists()
     .withMessage("place of birth is Required")
