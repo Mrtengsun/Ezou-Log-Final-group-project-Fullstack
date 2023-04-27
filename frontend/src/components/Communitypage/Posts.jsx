@@ -3,21 +3,32 @@ import { CommunityContext } from "../contexts/communityContext";
 import "./post.scss";
 
 const Posts = () => {
-  const { thumbsUp, setThumbsUp, comment, setComment } =
-    useContext(CommunityContext);
+  const {
+    thumbsUp,
+    setThumbsUp,
+    comment,
+    setComment,
+    commentSum,
+    setCommentSum,
+    thumbSum,
+    setThumbSum,
+  } = useContext(CommunityContext);
 
   const thumbsHandler = () => {
+    const sum = "";
     if (!thumbsUp) {
       setThumbsUp(true);
+
+      setThumbSum(sum + 1);
     } else {
       setThumbsUp(false);
     }
   };
   const commentsHandler = () => {
-    const addComment = document.createElement("div");
-    addComment.append(<p>this is a comment</p>);
+    const sum = "";
     if (!comment) {
       setComment(true);
+      setCommentSum(sum + 1);
     } else {
       setComment(false);
     }
@@ -38,13 +49,17 @@ const Posts = () => {
       </div>
       <div className="section-right">
         <div>
-          <h3>topic</h3>
+          <h3>Topic</h3>
           <p>description</p>
         </div>
         <div className="clicks">
           <div onClick={thumbsHandler}>
             {thumbsUp ? (
-              <i className="fa-solid fa-thumbs-up"></i>
+              <i className="fa-solid fa-thumbs-up">
+                <span style={{ marginLeft: "0.5rem", fontSize: "large" }}>
+                  {thumbSum}
+                </span>
+              </i>
             ) : (
               <i className="fa-regular fa-thumbs-up"></i>
             )}
@@ -60,7 +75,7 @@ const Posts = () => {
         </div>
         {comment ? (
           <div className="commented">
-            <input type="text" placeholder="Leave a comment" />
+            <textarea placeholder="Leave a comment"></textarea>
           </div>
         ) : (
           ""
