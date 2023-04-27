@@ -1,27 +1,25 @@
 import React, { useRef } from "react";
-import { BrowserRouter, Router, Route, Link } from 'react-router-dom'
-import "./Loginstyle.scss"
+import { Link } from "react-router-dom";
+import "./Loginstyle.scss";
 
-
-
-const Login = () => {
-  const userInput = useRef()
-  const passwordInput = useRef()
+const LoginComponent = () => {
+  const userInput = useRef();
+  const passwordInput = useRef();
 
   const handleSubmit = (event) => {
-    event.preventDefault()
-    console.log(userInput.current.value)
+    event.preventDefault();
+    console.log(userInput.current.value);
     const loginData = {
       userName: userInput.current.value,
-      password: passwordInput.current.value
-    }
+      password: passwordInput.current.value,
+    };
     const config = {
-      method: 'Post',
+      method: "Post",
       headers: {
-        'Conten-Type': "application/json"
+        "Conten-Type": "application/json",
       },
-      body: JSON.stringify(loginData)
-    }
+      body: JSON.stringify(loginData),
+    };
 
     fetch(`http://localhost:1200/login`, config)
       .then(res => res.json())
@@ -58,15 +56,11 @@ const Login = () => {
               <label>Create an Account  </label>
               <Link className="account" to='/Register'>REGISTER?</Link>
             </div>
-
           </div>
         </form>
       </div>
     </div>
+  );
+};
 
-  )
-
-
-}
-
-export default Login;
+export default LoginComponent;

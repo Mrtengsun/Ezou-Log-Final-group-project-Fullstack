@@ -4,6 +4,7 @@ import "./style/index.scss";
 import App from "./App.jsx";
 import CommunityContextProvider from "./components/contexts/communityContext.js";
 
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
