@@ -1,3 +1,5 @@
+
+
 import { Routes, Route } from "react-router-dom";
 import FrontPage from "../Frontpage/FrontPage.jsx";
 import CommunityPage from "../Communitypage/Community.jsx";
@@ -7,7 +9,8 @@ import Footer from "../Frontpage/Footer.jsx";
 import styles from "../Frontpage/Frontpage.module.scss";
 import LoginComponent from "../Loginprocess/LoginComponent.jsx";
 import CreateAccount from "../Loginprocess/CreateAccount.jsx";
-
+import ResetPassword from '../Loginprocess/ResetPassword.jsx'
+import ForgetPassword from "../Loginprocess/ForgetPassword.jsx";
 const MainPath = () => {
   return (
     <div>
@@ -20,8 +23,11 @@ const MainPath = () => {
 
         <Route path="/aboutus" element={<AboutUs />} />
 
-        <Route path="/support" />
+       <Route path="/support" />
         <Route path="/login" element={<LoginComponent />} />
+        <Route path="/forgetpass" element={<ForgetPassword/>} />
+        <Route path="/passreset" element={<ResetPassword/>} />
+
         <Route path="/logout" />
         <Route path="/register" element={<CreateAccount />} />
         <Route path="/*" />
@@ -32,4 +38,5 @@ const MainPath = () => {
   );
 };
 
-export default MainPath;
+
+ export default MainPath
