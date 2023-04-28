@@ -3,6 +3,7 @@ import "./addpost.scss";
 import { useContext } from "react";
 import { CommunityContext } from "../contexts/communityContext.js";
 import CommunityPopUp from "./CommunityPopUp.jsx";
+import Posts from "./Posts";
 
 const AddPost = () => {
   const { popUp, setPopUp, titleInput, descriptionInput } =
@@ -39,10 +40,12 @@ const AddPost = () => {
   };
   return (
     <div className="addpost">
-      <button id="addbutton" onClick={addPostHandler}>
-        <i className="fa-solid fa-plus fa-xs" />
-        ADD POST
-      </button>
+      <div>
+        <button id="addbutton" onClick={addPostHandler}>
+          <i className="fa-solid fa-plus fa-xs" />
+          ADD POST
+        </button>
+      </div>
       <CommunityPopUp trigger={popUp} setTrigger={setPopUp}>
         <form action="/addpost" className="communityForm">
           <h1>Ask me</h1>
@@ -74,6 +77,9 @@ const AddPost = () => {
           </button>
         </div>
       </CommunityPopUp>
+      <div className="post-section">
+        <Posts />
+      </div>
     </div>
   );
 };

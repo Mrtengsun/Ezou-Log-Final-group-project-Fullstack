@@ -1,18 +1,22 @@
-@import url('https://fonts.googleapis.com/css2?family=Monoton&family=News+Cycle:wght@400;700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Monoton&family=News+Cycle:wght@400;700&display=swap");
+//these are media query variables
+$phone: 360px;
+$tablet: 768px;
+$desktop: 1520px;
+$LGdesktop: 1920px;
+//=======================
 
+$hero-page: "Monoton", cursive;
+$text-font: "News Cycle", sans-serif;
 
-$hero-page : 'Monoton', cursive;
-$text-font : 'News Cycle', sans-serif;
-
-$bg-white: rgba(255,255,255);
+$bg-white: rgba(255, 255, 255);
 $bg-black: rgb(25, 22, 22);
-$text-white: rgba(235,235,235);
+$text-white: rgba(235, 235, 235);
 $text-black: rgb(30, 28, 28);
 $text-logo: rgb(2, 24, 34);
 $text-light-gray:rgb(175, 172, 172);
 $text-gray: rgb(79, 75, 75);
 $primary: #46a4b9;
-
 
 $spacing-sm: 8px;
 $spacing-md: 16px;
@@ -23,28 +27,28 @@ $header-height: 80px;
 $sm: 37.5em;
 $md: 48em;
 $lg: 64em;
-$xlg:75em;
+$xlg: 75em;
 
-@mixin breakpoint($point){
-    @if $point == md {
-        @media(min-width: $md){
-            @content;
-        }
+@mixin breakpoint($point) {
+  @if $point == md {
+    @media (min-width: $md) {
+      @content;
     }
-};
+  }
+}
 
-@mixin breakpoint($point){
-    @if $point == lg {
-        @media(min-width: $lg){
-            @content;
-        }
+@mixin breakpoint($point) {
+  @if $point == lg {
+    @media (min-width: $lg) {
+      @content;
     }
-};
+  }
+}
 
-@mixin breakpoint($point){
-    @if $point == xlg {
-        @media(min-width: $xlg){
-            @content;
-        }
+@mixin breakpoint($point) {
+  @if $point == xlg {
+    @media (min-width: $xlg) {
+      @content;
     }
-};
+  }
+}

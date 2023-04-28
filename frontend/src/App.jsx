@@ -3,7 +3,7 @@ import MainPath from "./components/mainPath/MainPath.jsx";
 const App = () => {
   return (
     <div>
-      <MainPath />
+  <MainPath /> 
     </div>
   );
 };

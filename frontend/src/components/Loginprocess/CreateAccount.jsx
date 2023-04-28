@@ -3,7 +3,9 @@ import { useContext } from "react";
 import { CreateaccountCTX } from "../contexts/CreateaccountCTX.jsx";
 import styles from "./CreateAccount.module.scss";
 
+
 const CreateAccount = () => {
+
   const {
     firstName,
     lastName,
@@ -219,6 +221,7 @@ const CreateAccount = () => {
       </div>
     </div>
   );
+
 };
 
 export default CreateAccount;
