@@ -1,4 +1,4 @@
 const Chat = () => {
-  return <div>subform</div>;
+  return <div className="chat">subform</div>;
 };
 export default Chat;
