@@ -31,7 +31,7 @@ const MainPath = () => {
         <Route path="/logout" />
         <Route path="/*" />
       </Routes>
-
+      <ChatBot />
       <Footer />
     </div>
   );

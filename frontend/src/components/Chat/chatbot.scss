@@ -1,0 +1,16 @@
+@import "../../style/variable.scss";
+.chatIcon {
+  display: flex;
+  justify-content: flex-end;
+
+  #icon {
+    padding: 1rem;
+    border-radius: 50%;
+    font-size: xx-large;
+    background-color: $primary;
+    color: white;
+    position: fixed;
+    right: 4rem;
+    top: 80%;
+  }
+}
