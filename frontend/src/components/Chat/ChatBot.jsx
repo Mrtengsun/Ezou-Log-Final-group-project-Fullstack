@@ -14,7 +14,7 @@ const ChatBot = () => {
         id="icon"
         onClick={chatClickHandler}
       ></i>
-      <div>
+      <div className="chatapi">
         <Chat></Chat>
       </div>
     </div>
