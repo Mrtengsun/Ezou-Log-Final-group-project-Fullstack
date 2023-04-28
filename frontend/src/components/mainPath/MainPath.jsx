@@ -3,13 +3,15 @@ import FrontPage from "../Frontpage/FrontPage.jsx";
 import CommunityPage from "../Communitypage/Community.jsx";
 import NavigationBar from "../Frontpage/NavigationBar.jsx";
 import AboutUs from "../Aboutus/AboutUs.jsx";
+import CreateAccount from "../Loginprocess/CreateAccount.jsx";
 import Footer from "../Frontpage/Footer.jsx";
-import styles from "../Frontpage/Frontpage.module.scss";
 import LoginComponent from "../Loginprocess/LoginComponent.jsx";
 
 const MainPath = () => {
   return (
     <div>
+      <NavigationBar />
+     
       <Routes>
         <Route path="/" element={<FrontPage />} />
 
@@ -21,8 +23,9 @@ const MainPath = () => {
         <Route path="/login" element={<LoginComponent />} />
         <Route path="/logout" />
         <Route path="/register" element={<CreateAccount />} />
-        <Route path="/*" />
+        <Route path="/*" element={<FrontPage />} />
       </Routes>
+      <Footer />
     </div>
   );
 };

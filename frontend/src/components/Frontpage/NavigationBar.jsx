@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 
 const NavigationBar = () => {
-  const [menuOpen, setMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(true);
 
   const menuToggler = () => setMenuOpen((p) => !p);
 
