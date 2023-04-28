@@ -8,10 +8,10 @@ const addressSchema = new Schema(
       type: String,
       required: true,
     },
-    city: {
-      type: String,
-      required: true,
-    },
+    // city: {
+    //   type: String,
+    //   required: true,
+    // },
     postalCode: {
       type: Number,
       required: true,
@@ -63,7 +63,7 @@ const userSchema = new Schema(
       required: true,
     },
     company: {
-      type: Number,
+      type: String,
     },
 
     address: {

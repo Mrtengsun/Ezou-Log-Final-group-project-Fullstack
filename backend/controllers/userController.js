@@ -9,7 +9,6 @@ const register = async (req, res, next) => {
     const qrCode = await QRCode.toDataURL(JSON.stringify(newUser));
     newUser.qrCode = qrCode;
     await newUser.save();
-    res.send(newUser);
     // sending email to conformed the user email
     const sendingEmail = await sendEmail(
       req.body.email,
@@ -27,9 +26,14 @@ const register = async (req, res, next) => {
             <br>
             Thank You.
         </p>
+
         `
+
     );
+    res.send(newUser);
+
   } catch (error) {
+    console.log(error);
     next(creatErr(401, error));
   }
 };
