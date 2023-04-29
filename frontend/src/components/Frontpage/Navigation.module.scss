@@ -2,10 +2,12 @@
 
 .nav {
   height: $header-height;
+
   background: $bg-white;
   border-bottom: 0.2rem solid $primary;
   color: $text-gray;
   position: fixed;
+
   z-index: 100;
   width: 100%;
 
@@ -168,5 +170,3 @@
     cursor: pointer;
   }
 }
-
-

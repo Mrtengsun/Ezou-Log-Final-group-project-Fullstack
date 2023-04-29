@@ -27,7 +27,6 @@ const addressSchema = new Schema(
   },
   { _id: false }
 );
-
 const userSchema = new Schema(
   {
     firstName: {
@@ -81,6 +80,7 @@ const userSchema = new Schema(
     communities: [{ type: Schema.Types.ObjectId, ref: "community" }],
     qrCode: { type: String },
   },
+
   {
     toJSON: {
       transform: function (doc, data) {
