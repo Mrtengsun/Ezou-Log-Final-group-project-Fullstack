@@ -23,7 +23,9 @@ const MainPath = () => {
 
         <Route path="/aboutus" element={<AboutUs />} />
 
+
         <Route path="/support" element={<ChatBot />} />
+
         <Route path="/login" element={<LoginComponent />} />
         <Route path="/forgetpass" element={<ForgetPassword />} />
         <Route path="/passreset" element={<ResetPassword />} />
