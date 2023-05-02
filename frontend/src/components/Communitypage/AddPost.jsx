@@ -77,7 +77,7 @@ const AddPost = () => {
           </button>
         </div>
       </CommunityPopUp>
-      <div>
+      <div className="post-section">
         <Posts />
       </div>
     </div>

@@ -43,6 +43,7 @@ const register = async (req, res, next) => {
     );
     res.send(newUser);
   } catch (error) {
+    console.log(error);
     next(creatErr(401, error));
   }
 };

@@ -76,15 +76,17 @@
     // display: block;
     padding: $spacing-md;
     cursor: pointer;
-
     list-style: none;
-    color: $text-gray;
+    a {
+      text-decoration: none;
+      color: $text-gray;
+      &:hover {
+        color: $primary;
+      }
+    }
 
     height: 100%;
     transition: 0.3s ease color;
-    &:hover {
-      color: $primary;
-    }
   }
 }
 
@@ -103,6 +105,7 @@
       align-items: center;
       justify-content: center;
       transition: 0.3s ease color;
+      
       &:hover {
         color: $primary;
       }
@@ -151,14 +154,17 @@
   padding: 0.5rem 1rem;
   transition: 0.3s ease color;
   background-color: $primary;
-  color: $text-white;
   border-radius: 10px;
   margin-left: 2rem;
-  cursor: pointer;
-  &:hover {
-    color: $text-gray;
-    background-color: rgba($primary, 0.8);
+  a {
+    text-decoration: none;
+    color: $text-white;
+    &:hover {
+      color: $text-gray;
+      background-color: rgba($primary, 0.8);
+    }
   }
+  cursor: pointer;
 }
 
 .avatar__logout {

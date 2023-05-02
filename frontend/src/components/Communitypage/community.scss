@@ -1,5 +1,253 @@
+@import "../../style/variable.scss";
 .community {
   padding-top: 5rem;
   display: flex;
+  // flex-wrap: wrap;
   width: 100vw;
+}
+
+@media screen and (max-width: $phone) {
+  .community {
+    flex-direction: column;
+    // flex-wrap: wrap;
+    width: 100%;
+
+    .search-section {
+      height: 0;
+      box-shadow: none;
+      flex-wrap: wrap;
+      padding-left: 0;
+      width: 100%;
+      align-items: flex-start;
+
+      .search-bar {
+      }
+    }
+    .addpost {
+      // flex-wrap: wrap;
+      margin: 1rem 0;
+      height: 100vh;
+      .CommunityPop {
+        .popUpWindow {
+          width: 80%;
+          height: fit-content;
+
+          margin: auto;
+          .communityForm {
+            width: 100%;
+            height: 100%;
+            .communityInput input {
+              margin: 0.5rem;
+              width: 90%;
+            }
+            .communityTextarea textarea {
+              margin: 0.5rem;
+              width: 90%;
+            }
+          }
+          .popUpButtons {
+            margin: 2rem 0;
+            width: 100%;
+          }
+        }
+      }
+      .post {
+        padding-bottom: 1rem;
+        width: 20rem;
+        flex-direction: column;
+        height: fit-content;
+        .section-left {
+          padding: 2rem;
+          .image img {
+            height: 5rem;
+          }
+        }
+        .section-right {
+          width: 100%;
+
+          .commented textarea {
+            width: 100%;
+
+            .section-left {
+              padding: 5rem;
+              .image img {
+                height: 10rem;
+                border-radius: 50%;
+              }
+            }
+            .section-right {
+              .clicks {
+                display: flex;
+                gap: 1rem;
+                font-size: x-large;
+                justify-content: center;
+              }
+              .commented textarea {
+                width: 80%;
+                height: 10rem;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $phone) and (max-width: $tablet) {
+  .community {
+    flex-direction: column;
+
+    width: 100vw;
+    .search-section {
+      height: 0;
+      box-shadow: none;
+      align-items: center;
+      width: 100vw;
+      margin-left: 0px;
+      // margin-right: 0px;
+    }
+    .addpost {
+      width: 100%;
+
+      margin: 1rem 0;
+      // height: 100vh;
+      .CommunityPop {
+        width: 100vw;
+        .popUpWindow {
+          width: 80%;
+          height: fit-content;
+          margin: auto;
+
+          .communityForm {
+            width: 100%;
+            height: 100%;
+
+            // text-align: center;
+            .communityInput input {
+              width: 60vw;
+            }
+            .communityTextarea textarea {
+              width: 60vw;
+            }
+          }
+          .popUpButtons {
+            margin: 2rem 0;
+            width: 100%;
+          }
+        }
+      }
+      .post-section {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+
+        .post {
+          padding-bottom: 1rem;
+          width: 20rem;
+          flex-direction: column;
+          height: fit-content;
+          .section-left {
+            padding: 2rem;
+            .image img {
+              height: 5rem;
+            }
+          }
+          .section-right {
+            width: 100%;
+            height: 100%;
+            padding: 1rem;
+            .clicks {
+              display: flex;
+              gap: 1rem;
+              font-size: x-large;
+              justify-content: center;
+            }
+            .commented textarea {
+              width: 100%;
+              height: 5rem;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: $tablet) and (max-width: $desktop) {
+  .community {
+    width: 100%;
+    .search-section {
+      height: fit-content;
+      // box-shadow: none;
+      // align-items: center;
+      // width: 100vw;
+      // margin-left: 0px;
+      // margin-right: 0px;
+    }
+    .addpost {
+      width: 100%;
+
+      margin: 1rem 0;
+      // height: 100vh;
+      .CommunityPop {
+        width: 100vw;
+        .popUpWindow {
+          width: 80%;
+          height: fit-content;
+          margin: auto;
+
+          .communityForm {
+            width: 100%;
+            height: 100%;
+
+            // text-align: center;
+            .communityInput input {
+              width: 60vw;
+            }
+            .communityTextarea textarea {
+              width: 60vw;
+            }
+          }
+          .popUpButtons {
+            margin: 2rem 0;
+            width: 100%;
+          }
+        }
+      }
+      .post-section {
+        align-items: center;
+        display: flex;
+        flex-wrap: wrap;
+
+        .post {
+          padding-bottom: 1rem;
+          width: 20rem;
+          flex-direction: column;
+          height: fit-content;
+          .section-left {
+            padding: 2rem;
+            .image img {
+              height: 5rem;
+            }
+          }
+          .section-right {
+            width: 100%;
+            height: 100%;
+            padding: 1rem;
+            .clicks {
+              display: flex;
+              gap: 1rem;
+              font-size: x-large;
+              justify-content: center;
+            }
+            .commented textarea {
+              width: 100%;
+              height: 5rem;
+            }
+          }
+        }
+      }
+    }
+  }
 }
