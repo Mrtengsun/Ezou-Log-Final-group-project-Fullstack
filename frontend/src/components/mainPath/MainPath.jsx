@@ -3,9 +3,8 @@ import FrontPage from "../Frontpage/FrontPage.jsx";
 import CommunityPage from "../Communitypage/Community.jsx";
 import NavigationBar from "../Frontpage/NavigationBar.jsx";
 import AboutUs from "../Aboutus/AboutUs.jsx";
-import CreateAccount from "../Loginprocess/CreateAccount.jsx";
-import Footer from "../Frontpage/Footer.jsx";
 
+import Footer from "../Frontpage/Footer.jsx";
 
 import LoginComponent from "../Loginprocess/LoginComponent.jsx";
 
