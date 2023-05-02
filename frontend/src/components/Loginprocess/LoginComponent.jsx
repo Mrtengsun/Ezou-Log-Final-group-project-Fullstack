@@ -41,17 +41,13 @@ const LoginComponent = () => {
               <br /> <br />
               <input type="password" placeholder="password"
                 ref={passwordInput} />
-
             </div>
 
             <div className="forgetpass">
-
               <label type="checkbox"><input type="checkbox" className="check" />Remember me</label>
               <Link className="account" to='/forgotten password'>Forgotten password ?</Link>
             </div>
-
             <button type="submit" className="btn">Sign in</button>
-
             <div className="register">
               <label>Create an Account  </label>
               <Link className="account" to='/Register'>REGISTER?</Link>
@@ -60,7 +56,6 @@ const LoginComponent = () => {
         </form>
       </div>
     </div>
-  );
-};
-
+  )
+}
 export default LoginComponent;

@@ -9,8 +9,7 @@ const App = () => {
       {/* <MainPath /> */}
       {/* <LoginComponent/> */}
       {/* <ForgetPassword/> */}
-      {/* <ResetPassword/> */}
-      <CreateAccount/>
+      <ResetPassword/>
     </div>
   );
 };

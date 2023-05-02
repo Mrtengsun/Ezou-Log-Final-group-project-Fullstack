@@ -17,7 +17,6 @@
        <Routes>
         <Route path="/" element={<FrontPage />}/>
         <Route path="/aboutus" element={<AboutUs />} />
-
        <Route path="/support" />
         <Route path="/login" element={<LoginComponent />} />
        <Route path="/logout" />
