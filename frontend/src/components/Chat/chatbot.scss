@@ -13,4 +13,27 @@
     right: 4rem;
     top: 80%;
   }
+
+  .chat {
+    position: fixed;
+    width: 100vw;
+    min-height: 100vh;
+    background-color: transparent;
+    .chatPop {
+      display: flex;
+      flex-wrap: wrap;
+      font-family: $text-font;
+      color: $text-gray;
+      flex-direction: column;
+      justify-content: space-around;
+      position: relative;
+      margin-left: 30%;
+      margin-top: 5%;
+      width: 30rem;
+      height: 40rem;
+      background-color: $bg-white;
+      box-shadow: 0px 2px 5px 0.5px $primary;
+      border-radius: 0.5rem;
+    }
+  }
 }
