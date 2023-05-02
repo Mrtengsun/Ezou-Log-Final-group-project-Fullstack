@@ -8,13 +8,13 @@ import Footer from "../Frontpage/Footer.jsx";
 
 
 import LoginComponent from "../Loginprocess/LoginComponent.jsx";
-import CreateAccount from "../Loginprocess/CreateAccount.jsx";
+
 import ResetPassword from "../Loginprocess/ResetPassword.jsx";
 import ForgetPassword from "../Loginprocess/ForgetPassword.jsx";
 import ChatBot from "../Chat/ChatBot.jsx";
 const MainPath = () => {
   return (
-    <div>
+    <div >
       <NavigationBar />
 
       <Routes>

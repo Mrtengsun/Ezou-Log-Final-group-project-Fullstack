@@ -13,6 +13,7 @@
         box-shadow: 0.2rem 0.2rem 0.5rem $text-gray;
         transition: transform 2000ms;
         transform-style: preserve-3d;
+        text-align: center;
 
         &:hover{
             cursor: pointer;

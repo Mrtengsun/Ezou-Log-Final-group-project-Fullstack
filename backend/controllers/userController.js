@@ -15,27 +15,6 @@ const register = async (req, res, next) => {
     const sendingEmail = await sendEmail(
       req.body.email,
       "verify Your email",
-<<<<<<< HEAD
-      `
-        <h1>Verify Your Email</h1>
-        <h2>Dear "${req.body.firstName}"</h2>
-        <h4>This is my first Full Stack Project, Thanks for your visit </4>
-        <p>
-    
-            This email '${req.body.email}', is used to register in our app, <br>
-            please visit <a href="http://localhost:5000/api/user/register?userId=${newUser._id}">this link</a> To verify your email.
-            <br>
-            If you not the owner, please ignore the message
-            <br>
-            Thank You.
-        </p>
-
-        `
-
-    );
-    res.send(newUser);
-
-=======
       `<div style="font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2">
       <div style="margin:50px auto;width:70%;padding:20px 0">
       <div style="border-bottom:1px solid #eee">
@@ -63,7 +42,6 @@ const register = async (req, res, next) => {
       </div>`
     );
     res.send(newUser);
->>>>>>> origin/main
   } catch (error) {
     console.log(error);
     next(creatErr(401, error));
