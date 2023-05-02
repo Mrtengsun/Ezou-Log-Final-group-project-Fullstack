@@ -1,7 +1,9 @@
+
 import styles from "./Frontpage.module.scss";
 
 import HeroComponents from "./HeroComponents";
 import CardComponents from "../Card/CardComponents";
+
 
 const FrontPage = () => {
   return (

@@ -18,14 +18,16 @@
     padding: 0.8rem 1.5rem;
     margin: 2rem;
     border-radius: 10px;
-    color: $text-white;
-    font-family: $text-font;
-    cursor: pointer;
 
-    &:hover {
-      color: $text-gray;
-      background-color: rgba($primary, 0.8);
+    font-family: $text-font;
+    a {
+      text-decoration: none;
+      color: $text-white;
+      &:hover {
+        color: $text-gray;
+      }
     }
+    cursor: pointer;
   }
 }
 

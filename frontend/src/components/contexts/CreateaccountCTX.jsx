@@ -22,6 +22,7 @@ const CreateaccountCTXProvider = ({ children }) => {
   const country = useRef();
   const profession = useRef();
  const navigate = useNavigate()
+ 
   const [errors, setErrors] = useState(null);
 
   
@@ -51,6 +52,7 @@ const CreateaccountCTXProvider = ({ children }) => {
           user,
           setUser,
           navigate,
+          
         }}
       >
         {children}
