@@ -173,6 +173,8 @@
   .avatar {
     width: 3rem;
     border-radius: 50%;
+    margin-left: 2rem;
+    border: 3px solid rgba($primary, 0.8);
     cursor: pointer;
   }
 }
