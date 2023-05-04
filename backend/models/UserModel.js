@@ -63,7 +63,7 @@ const userSchema = new Schema(
       required: true,
     },
     company: {
-      type: Number,
+      type: String,
     },
 
     address: {
