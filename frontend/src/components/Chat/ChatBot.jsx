@@ -1,8 +1,10 @@
-import { io } from "socket.io-client";
 import { useContext } from "react";
 import { ChatContext } from "../contexts/chatContext.js";
 import "./chatbot.scss";
 import Chat from "./Chat.jsx";
+import { io } from "socket.io-client";
+
+const socket = io("http://localhost:5000");
 
 const ChatBot = () => {
   const { chat, setChat, username, setUserName } = useContext(ChatContext);
@@ -14,7 +16,7 @@ const ChatBot = () => {
   };
   return (
     <div>
-      <div className="chatIcon">
+      <div className={chat ? "removeIcon" : "chatIcon"}>
         <i
           className="fa-regular fa-comment-dots"
           id="icon"
@@ -23,10 +25,9 @@ const ChatBot = () => {
       </div>
 
       <Chat trigger={chat} setTrigger={setChat}>
-        {/* <div ></div> */}
         <div className="chatTitle">
           <i
-            className="fa-regular fa-xmark fa-xl"
+            className="fa-regular fa-circle-xmark fa-2xl"
             id="closeMark"
             onClick={closeHandler}
           ></i>
@@ -34,14 +35,19 @@ const ChatBot = () => {
         </div>
         <div className="chatWindow">
           <h1>text</h1>
-          <div>
-            <p>date</p>
-            <p>author</p>
+          <div className="chatMark">
+            <p>mustermann</p>
+            <p>
+              {new Date(Date.now()).getHours()}:
+              {new Date(Date.now()).getMinutes()}
+            </p>
           </div>
         </div>
         <div className="chatInput">
-          <input type="text" className="chatting" />
+          <textarea type="text" className="chatting" />
+          <button className="sending">Send</button>
         </div>
+        )
       </Chat>
     </div>
   );
