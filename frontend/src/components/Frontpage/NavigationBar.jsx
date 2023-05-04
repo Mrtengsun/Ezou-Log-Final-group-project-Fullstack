@@ -4,6 +4,7 @@ import { BiMenuAltRight } from "react-icons/bi";
 import { AiOutlineCloseSquare } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import { CreateaccountCTX } from "../contexts/CreateaccountCTX";
+import Darkmode from "./DarkMode/DarkMode"
 
 const NavigationBar = () => {
 
@@ -38,6 +39,7 @@ const NavigationBar = () => {
           </ul>
         </div>
         <div>
+          <Darkmode/>
           {/* <div className={styles.switch}>
             <input id={styles.checkbox1} type="checkbox" />
             <label for="checkbox1"></label>
