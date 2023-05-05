@@ -1,23 +1,61 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { ChatContext } from "../contexts/chatContext.js";
 import "./chatbot.scss";
 import Chat from "./Chat.jsx";
 import { io } from "socket.io-client";
+import { set } from "mongoose";
 
 const socket = io("http://localhost:5000");
 
-socket.on("connect", () => {
-  console.log(socket.id);
-});
-
 const ChatBot = () => {
-  const { chat, setChat, username, setUserName } = useContext(ChatContext);
+  const {
+    chat,
+    setChat,
+    userName,
+    setUserName,
+    message,
+    setMessage,
+    receivedMessage,
+    setReceivedMessage,
+    room,
+    setRoom,
+    textList,
+    setTextList,
+  } = useContext(ChatContext);
   const chatClickHandler = () => {
     setChat(true);
+    setRoom(userName);
   };
   const closeHandler = () => {
     setChat(false);
   };
+  const messageHandler = (e) => {
+    setMessage(e.target.value);
+  };
+  const sendMessageHandler = () => {
+    const messageData = {
+      message: message,
+      author: userName,
+      room: room,
+      time:
+        new Date(Date.now()).getHours() +
+        ":" +
+        new Date(Date.now()).getMinutes(),
+    };
+    socket.emit("sendMessage", messageData);
+    setTextList((list) => [...list, messageData]);
+    if (messageData.room !== "") {
+      socket.emit("joinRoom", messageData.room);
+    }
+  };
+  useEffect(() => {
+    socket.on("receiveMessage", (data) => {
+      // setReceivedMessage(data.message);
+      setTextList((list) => [...list, data]);
+    });
+  }, [socket]);
+  console.log(textList);
+
   return (
     <div>
       <div className={chat ? "removeIcon" : "chatIcon"}>
@@ -38,20 +76,43 @@ const ChatBot = () => {
           <h1 className="heading"> live support</h1>
         </div>
         <div className="chatWindow">
-          <h1>text</h1>
+          {textList.map((message, i) => {
+            return (
+              <div key={i}>
+                <div
+                  className="chatContent"
+                  id={userName === message.author ? "author" : "admin"}
+                >
+                  <h3>{message.message}</h3>
+                </div>
+                <div className="chatMark">
+                  <p id="sender">{message.author}</p>
+                  <p>{message.time}</p>
+                </div>
+              </div>
+            );
+          })}
+          {/* <h1>{receivedMessage}</h1>
           <div className="chatMark">
-            <p>mustermann</p>
+            {/* <p>{userName}</p>
             <p>
               {new Date(Date.now()).getHours()}:
               {new Date(Date.now()).getMinutes()}
-            </p>
-          </div>
+            </p> */}
+          {/* </div>{" "} */}
         </div>
         <div className="chatInput">
-          <textarea type="text" className="chatting" />
-          <button className="sending">Send</button>
+          <textarea
+            type="text"
+            className="chatting"
+            placeholder="Messaging......"
+            onChange={messageHandler}
+            onKeyDown={(e) => e.key === "Enter" && sendMessageHandler()}
+          />
+          <button className="sending" onClick={sendMessageHandler}>
+            Send
+          </button>
         </div>
-        )
       </Chat>
     </div>
   );
