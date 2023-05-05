@@ -3,8 +3,10 @@ import sendEmail from "../middlewares/sendEmail.js";
 import creatErr from "http-errors";
 import jwt from "jsonwebtoken";
 import QRCode from "qrcode";
-import crypto from "crypto";
+import { compare } from "crypto";
+import path from "path";
 
+// register a new user
 const register = async (req, res, next) => {
   try {
     const newUser = await User.create(req.body);
@@ -59,7 +61,7 @@ const conformedEmail = async (req, res, next) => {
     next(creatErr(401, error));
   }
 };
-
+// loging the user and creating token
 const logIn = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -101,6 +103,7 @@ const update = async (req, res, next) => {
     next(creatErr(401, error));
   }
 };
+// sending code to user email to recover his password
 const sendCode = async (req, res, next) => {
   try {
     // Check if user with this email exists in the database
@@ -140,6 +143,7 @@ const sendCode = async (req, res, next) => {
     next(creatErr(407, error.message));
   }
 };
+// changing the forgotten password with new one
 const addNewPassword = async (req, res, next) => {
   try {
     const user = await User.findOne({ email: req.body.email });
@@ -157,5 +161,79 @@ const addNewPassword = async (req, res, next) => {
     next(creatErr(401, error.message));
   }
 };
+// Update password
+const updatePassword = async (req, res) => {
+  const { id } = req.params;
+  const { oldPassword, newPassword } = req.body;
 
-export { register, conformedEmail, logIn, update, sendCode, addNewPassword };
+  try {
+    const user = await User.findById(id);
+    if (!user) {
+      return res.status(401).json({ message: "Unauthorized" });
+    }
+
+    // Check if old password is correct
+    const isPasswordCorrect = await compare(oldPassword, user.password);
+    if (!isPasswordCorrect) {
+      return res.status(400).json({ message: "Old password is incorrect" });
+    }
+    //  check new password length
+    if (newPassword.length < 6 || newPassword.length > 20) {
+      return res
+        .status(400)
+        .json({ message: "New password must be between 6 and 20 characters" });
+    }
+
+    // by saving its auto hashing password
+
+    user.password = newPassword;
+    await user.save();
+
+    res.status(200).json({ message: "Password updated successfully" });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+// gitting profile picture
+const profilePicture = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.id);
+
+    const fotoProfilePath = path.resolve("./", user.imgProfile.path);
+    res.sendFile(fotoProfilePath);
+  } catch (error) {
+    next(creatErr(404, error));
+  }
+};
+// updating the profile pictures
+const updateProfilePicture = async (req, res, next) => {
+  if (!req.files["profilePicture"]) {
+    next(creatErr(401, "please select the file"));
+    return;
+  }
+
+  try {
+    const updateImg = await User.findOneAndUpdate(
+      { _id: req.params.id },
+      { imgProfile: req.files["profilePicture"][0] },
+      { new: true }
+    );
+
+    res.send(updateImg);
+  } catch (error) {
+    next(creatErr(401, error));
+  }
+};
+
+export {
+  register,
+  conformedEmail,
+  logIn,
+  update,
+  sendCode,
+  addNewPassword,
+  updatePassword,
+  profilePicture,
+  updateProfilePicture,
+};
