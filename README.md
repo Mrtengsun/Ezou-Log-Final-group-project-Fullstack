@@ -63,3 +63,7 @@
 --react-router-dom
 --react-bootstrap bootstrap
 --tailwindcss
+
+## Design:
+-Canva
+-Figma

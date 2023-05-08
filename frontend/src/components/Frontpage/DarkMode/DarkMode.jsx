@@ -3,10 +3,13 @@ import { ReactComponent as Sun } from "./Sun.svg";
 import { ReactComponent as Moon } from "./Moon.svg";
 import "./DarkMode.css";
 import { useContext } from "react";
-import { ThemeCTX } from "../../../App";
+import { CreateaccountCTX } from "../../contexts/CreateaccountCTX";
+
 
 const DarkMode = () => {
-  const { changeTheme, theme, setTheme } = useContext(ThemeCTX);
+
+    const {changeTheme,theme,setTheme} = useContext(CreateaccountCTX)
+
 
   useEffect(() => {
     localStorage.setItem("themeKey", JSON.stringify(theme));

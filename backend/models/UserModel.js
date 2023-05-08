@@ -103,15 +103,15 @@ userSchema.pre("save", async function () {
 });
 // Add a method to the schema to compare passwords
 
-userSchema.methods.comparePassword = async function (candidatePassword) {
-  try {
-    const isMatch = await compare(candidatePassword, this.password);
-    console.log(isMatch);
-    return isMatch;
-  } catch (error) {
-    throw new Error(error);
-  }
-};
+// userSchema.methods.comparePassword = async function (candidatePassword) {
+//   try {
+//     const isMatch = await compare(candidatePassword, this.password);
+//     console.log(isMatch);
+//     return isMatch;
+//   } catch (error) {
+//     throw new Error(error);
+//   }
+// };
 
 const User = model("user", userSchema);
 export default User;
