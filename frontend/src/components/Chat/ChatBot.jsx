@@ -4,7 +4,6 @@ import "./chatbot.scss";
 import Chat from "./Chat.jsx";
 import { io } from "socket.io-client";
 
-
 const socket = io("http://localhost:5000");
 
 const ChatBot = () => {
@@ -21,6 +20,8 @@ const ChatBot = () => {
     setRoom,
     textList,
     setTextList,
+    clearValue,
+    setClearValue,
   } = useContext(ChatContext);
   const chatClickHandler = () => {
     setChat(true);
@@ -30,22 +31,26 @@ const ChatBot = () => {
     setChat(false);
   };
   const messageHandler = (e) => {
+    setClearValue(null);
     setMessage(e.target.value);
   };
   const sendMessageHandler = () => {
-    const messageData = {
-      message: message,
-      author: userName,
-      room: room,
-      time:
-        new Date(Date.now()).getHours() +
-        ":" +
-        new Date(Date.now()).getMinutes(),
-    };
-    socket.emit("sendMessage", messageData);
-    setTextList((list) => [...list, messageData]);
-    if (messageData.room !== "") {
-      socket.emit("joinRoom", messageData.room);
+    if (message) {
+      const messageData = {
+        message: message,
+        author: userName,
+        room: room,
+        time:
+          new Date(Date.now()).getHours() +
+          ":" +
+          new Date(Date.now()).getMinutes(),
+      };
+      setClearValue("");
+      socket.emit("sendMessage", messageData);
+      setTextList((list) => [...list, messageData]);
+      if (messageData.room !== "") {
+        socket.emit("joinRoom", messageData.room);
+      }
     }
   };
   useEffect(() => {
@@ -106,6 +111,7 @@ const ChatBot = () => {
             type="text"
             className="chatting"
             placeholder="Messaging......"
+            value={sendMessageHandler && clearValue}
             onChange={messageHandler}
             onKeyDown={(e) => e.key === "Enter" && sendMessageHandler()}
           />

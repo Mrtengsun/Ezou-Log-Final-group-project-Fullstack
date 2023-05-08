@@ -2,10 +2,9 @@ POST http://localhost:5000/api/user/register
 Content-Type: application/json
 
 {
-
     "firstName" : "Maria",
     "lastName" : "Jesus",
-    "email": "ntiamoah11@gmail.com",
+    "email": "diouanijalouka@gmail.com",
     "password": "123456789",
     "placeOfBirth": "berlin",
     "gender" : "man",
@@ -20,7 +19,7 @@ Content-Type: application/json
 
 {
 
-    "email": "ntiamoah11@gmail.com",
+    "email": "diouanijalouka@gmail.com",
     "password": "123456789"
     
 }
