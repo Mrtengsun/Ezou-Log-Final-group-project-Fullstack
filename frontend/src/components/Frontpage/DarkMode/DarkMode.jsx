@@ -7,28 +7,33 @@ import { CreateaccountCTX } from "../../contexts/CreateaccountCTX";
 
 
 const DarkMode = () => {
+
     const {changeTheme,theme,setTheme} = useContext(CreateaccountCTX)
 
-    useEffect(()=>{
-        localStorage.setItem("themeKey",JSON.stringify(theme))
 
-    },[theme])
+  useEffect(() => {
+    localStorage.setItem("themeKey", JSON.stringify(theme));
+  }, [theme]);
 
-    const toggleChange = theme==="light"? "first_mode_label":"second_mode_label"
-    return (
-        <div className='dark_mode'>
-            <input
-                className='dark_mode_input'
-                type='checkbox'
-                id='darkmode-toggle'
-                onChange={changeTheme}
-            />
-            <label className={`dark_mode_label ${toggleChange}`} for='darkmode-toggle'>
-                <Sun />
-                <Moon />
-            </label>
-        </div>
-    );
+  const toggleChange =
+    theme === "light" ? "first_mode_label" : "second_mode_label";
+  return (
+    <div className="dark_mode">
+      <input
+        className="dark_mode_input"
+        type="checkbox"
+        id="darkmode-toggle"
+        onChange={changeTheme}
+      />
+      <label
+        className={`dark_mode_label ${toggleChange}`}
+        for="darkmode-toggle"
+      >
+        <Sun />
+        <Moon />
+      </label>
+    </div>
+  );
 };
 
 export default DarkMode;

@@ -10,6 +10,7 @@ const ChatContextProvider = ({ children }) => {
   const [chat, setChat] = useState();
   const [message, setMessage] = useState("");
   const [receivedMessage, setReceivedMessage] = useState("");
+  const [clearValue, setClearValue] = useState();
   return (
     <ChatContext.Provider
       value={{
@@ -29,6 +30,8 @@ const ChatContextProvider = ({ children }) => {
         setMessage,
         receivedMessage,
         setReceivedMessage,
+        clearValue,
+        setClearValue,
       }}
     >
       {children}
