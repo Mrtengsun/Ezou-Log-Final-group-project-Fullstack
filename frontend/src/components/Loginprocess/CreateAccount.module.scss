@@ -5,7 +5,8 @@
   flex-direction: column;
   align-items: center;
   margin: auto;
-  height: 100vh;
+  // height: 100vh;
+  padding: 4rem 0;
   width: 80vw;
   justify-content: center;
 
@@ -98,7 +99,7 @@
 @media screen and (max-width: 690px) {
   .account {
     height: auto;
-    
+    padding: 0;
     
     .form {
       display: grid;
