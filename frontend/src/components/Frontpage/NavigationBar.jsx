@@ -6,8 +6,7 @@ import { NavLink } from "react-router-dom";
 import { CreateaccountCTX } from "../contexts/CreateaccountCTX";
 
 const NavigationBar = () => {
-
-  
+  const { user } = useContext(CreateaccountCTX);
   const [menuOpen, setMenuOpen] = useState(false);
 
   const menuToggler = () => setMenuOpen((p) => !p);
@@ -44,19 +43,22 @@ const NavigationBar = () => {
           </div> */}
 
           <div>
-            {/* //login in button will display when user is not log in */}
-            <button className={styles.loginbutton}>
-              <NavLink to="/login">Login</NavLink>
-            </button>
-            {/* logout and avater will display when user is log in  */}
-            <div className={styles.avatar__logout}>
-              {/* <img
-                src="/images/Neytiri_Profilbild.webp"
-                alt=""
-                className={styles.avatar}
-              />
-              <button className={styles.loginbutton}>LogOut</button> */}
-            </div>
+            {!user ? (
+              /* //login in button will display when user is not log in */
+              <button className={styles.loginbutton}>
+                <NavLink to="/login">Login</NavLink>
+              </button>
+            ) : (
+              /* logout and avater will display when user is log in  */
+              <div className={styles.avatar__logout}>
+                <img
+                  src="/images/Neytiri_Profilbild.webp"
+                  alt=""
+                  className={styles.avatar}
+                />
+                <button className={styles.loginbutton}>LogOut</button>
+              </div>
+            )}
           </div>
 
           <button className={styles.__open} onClick={menuToggler}>
