@@ -4,7 +4,6 @@ import creatErr from "http-errors";
 import jwt from "jsonwebtoken";
 import QRCode from "qrcode";
 
-
 import path from "path";
 import { compare, hash } from "bcrypt";
 
@@ -12,6 +11,8 @@ import { compare, hash } from "bcrypt";
 // register a new user
 const register = async (req, res, next) => {
   try {
+    const hashPassword = await hash(req.body.password, 10);
+    req.body.password = hashPassword;
     const newUser = await User.create(req.body);
     const qrCode = await QRCode.toDataURL(JSON.stringify(newUser));
     newUser.qrCode = qrCode;
@@ -75,15 +76,16 @@ const logIn = async (req, res, next) => {
     if (!loginUser) return next(creatErr(401, " InvInvalid email or password"));
 
     // Check if the password is correct
-    // const isMatch = await compare(password,loginUser.password);
-    // if (!isMatch) {
-    //   return next(creatErr(401, "InvInvalid email or password"));
-    // }
-    if (loginUser.verified)
+
+    const isMatch = await compare(password, loginUser.password);
+    console.log(" isMactch:", isMatch, password);
+    if (!isMatch) {
+      return next(creatErr(401, "InvInvalid email or password"));
+    }
+    if (!loginUser.verified)
+
       return next(creatErr(404, "please conform your email"));
-    const createToken = jwt.sign({ id: loginUser._id }, process.env.SECRET, {
-      expiresIn: `${60 * 24}m`,
-    });
+    const createToken = jwt.sign({ id: loginUser._id }, process.env.SECRET);
 
     res.send({ user: loginUser, token: createToken });
   } catch (error) {
@@ -118,7 +120,7 @@ const sendCode = async (req, res, next) => {
     }
 
     // Generate a unique random 5 digital number for the password reset email
-    const randomInt = (crypto.randomBytes(4).readUInt32BE(0) % 99999) + 10000;
+    const randomInt = Math.floor(Math.random() * 90000) + 10000;
 
     const sent = await sendEmail(
       req.params.email,
@@ -157,7 +159,8 @@ const addNewPassword = async (req, res, next) => {
         .json({ message: "Password reset token is invalid or has expired" });
     }
     // Update user's password in the database
-    user.password = req.body.password;
+    const hashPassword = await hash(req.body.password, 10);
+    user.password = hashPassword;
     await user.save();
     console.log(user);
     res.json({ successfull: true });
@@ -188,9 +191,9 @@ const updatePassword = async (req, res) => {
         .json({ message: "New password must be between 6 and 20 characters" });
     }
 
-    // by saving its auto hashing password
-
-    user.password = newPassword;
+    // by saving its and hashing password
+    const hashPassword = await hash(newPassword, 10);
+    user.password = hashPassword;
     await user.save();
 
     res.status(200).json({ message: "Password updated successfully" });

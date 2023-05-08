@@ -8,7 +8,9 @@ import Darkmode from "./DarkMode/DarkMode";
 
 
 const NavigationBar = () => {
+
   const { user,navigate } = useContext(CreateaccountCTX);
+
 
   const [menuOpen, setMenuOpen] = useState(false);
 
