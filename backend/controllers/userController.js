@@ -3,14 +3,11 @@ import sendEmail from "../middlewares/sendEmail.js";
 import creatErr from "http-errors";
 import jwt from "jsonwebtoken";
 import QRCode from "qrcode";
-<<<<<<< HEAD
-import { compare } from "crypto";
+
+
 import path from "path";
-=======
-import crypto from "crypto";
 import { compare, hash } from "bcrypt";
 
->>>>>>> a267c70 (usermodel components updatd)
 
 // register a new user
 const register = async (req, res, next) => {
