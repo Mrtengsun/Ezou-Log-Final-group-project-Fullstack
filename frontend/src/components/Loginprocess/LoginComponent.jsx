@@ -21,7 +21,7 @@ const LoginComponent = () => {
       body: JSON.stringify(loginData),
     };
 
-    fetch(`http://localhost:1200/login`, config)
+    fetch(`http://localhost:5000/api/user/login`, config)
       .then(res => res.json())
       .then(result => {
         console.log(result)
@@ -37,7 +37,7 @@ const LoginComponent = () => {
 
           <div className="inputbox">
             <div className="input-container">
-              <input type="text" placeholder="username" ref={userInput} />
+              <input type="email" placeholder="username" ref={userInput} />
               <br /> <br />
               <input type="password" placeholder="password"
                 ref={passwordInput} />
