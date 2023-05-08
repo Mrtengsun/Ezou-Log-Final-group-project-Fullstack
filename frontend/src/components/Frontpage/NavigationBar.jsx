@@ -6,17 +6,18 @@ import { NavLink } from "react-router-dom";
 import { CreateaccountCTX } from "../contexts/CreateaccountCTX";
 import Darkmode from "./DarkMode/DarkMode";
 
-
 const NavigationBar = () => {
+
 
   const { user,navigate } = useContext(CreateaccountCTX);
 
 
+
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const logo = ()=>{
-    navigate("/")
-  }
+  const logo = () => {
+    navigate("/");
+  };
   const menuToggler = () => setMenuOpen((p) => !p);
 
   return (
@@ -26,7 +27,7 @@ const NavigationBar = () => {
           {/* <span className={styles.logo}>EZOU</span>
           <br />
           <span className={styles.logo}>LOG</span> */}
-          <img onClick={logo} src="/images/logo.png" alt="logo" />
+          {/* <img onClick={logo} src="/images/logo.png" alt="logo" /> */}
         </div>
         <div>
           <ul

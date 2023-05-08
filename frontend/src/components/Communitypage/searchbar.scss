@@ -9,6 +9,7 @@
   flex-direction: column;
   align-items: center;
   border-radius: 0.5rem;
+
   .search-bar {
     margin: 0.5rem;
     padding-left: 0.5rem;
@@ -19,9 +20,11 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: $bg-white;
     #search-input {
       height: 100%;
       width: 100%;
+
       border-radius: 0.5rem;
       border-style: hidden;
       outline: none;

@@ -1,16 +1,14 @@
 import MainPath from "./components/mainPath/MainPath.jsx";
-import "./app.css";
+import "./app.scss";
 import { useContext } from "react";
 import { CreateaccountCTX } from "./components/contexts/CreateaccountCTX.jsx";
 
-
 const App = () => {
-  const {theme} = useContext(CreateaccountCTX)
+  const { theme } = useContext(CreateaccountCTX);
   return (
     <div id={theme}>
       <MainPath />
     </div>
-
   );
 };
 
