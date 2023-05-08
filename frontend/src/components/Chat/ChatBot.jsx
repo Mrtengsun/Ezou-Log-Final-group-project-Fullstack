@@ -3,7 +3,7 @@ import { ChatContext } from "../contexts/chatContext.js";
 import "./chatbot.scss";
 import Chat from "./Chat.jsx";
 import { io } from "socket.io-client";
-import { set } from "mongoose";
+
 
 const socket = io("http://localhost:5000");
 
