@@ -46,7 +46,7 @@ const NavigationBar = () => {
           <div>
             {/* //login in button will display when user is not log in */}
             <button className={styles.loginbutton}>
-              <NavLink to="/login">Login</NavLink>
+              <NavLink to="/loginComponent">Login</NavLink>
             </button>
             {/* logout and avater will display when user is log in  */}
             <div className={styles.avatar__logout}>

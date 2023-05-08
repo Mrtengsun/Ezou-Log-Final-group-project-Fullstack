@@ -1,7 +1,7 @@
 import { useState, createContext, useRef, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
-
 import account from "./UserReducer";
+
 
 export const CreateaccountCTX = createContext();
 const existUser = JSON.parse(localStorage.getItem("user"))||null
@@ -22,10 +22,12 @@ const CreateaccountCTXProvider = ({ children }) => {
   const country = useRef();
   const profession = useRef();
  const navigate = useNavigate()
- 
   const [errors, setErrors] = useState(null);
+ 
 
-  
+
+ 
+
   const [statereducer, dispatch] = useReducer(account, {});
 
   return (
@@ -52,7 +54,6 @@ const CreateaccountCTXProvider = ({ children }) => {
           user,
           setUser,
           navigate,
-          
         }}
       >
         {children}
