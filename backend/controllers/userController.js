@@ -3,9 +3,10 @@ import sendEmail from "../middlewares/sendEmail.js";
 import creatErr from "http-errors";
 import jwt from "jsonwebtoken";
 import QRCode from "qrcode";
-import { compare, hash } from "bcrypt";
 
 import path from "path";
+import { compare, hash } from "bcrypt";
+
 
 // register a new user
 const register = async (req, res, next) => {
@@ -53,6 +54,7 @@ const register = async (req, res, next) => {
   }
 };
 const conformedEmail = async (req, res, next) => {
+  console.log("object");
   try {
     const updateUser = await User.findOneAndUpdate(
       { _id: req.query.userId },
@@ -74,12 +76,14 @@ const logIn = async (req, res, next) => {
     if (!loginUser) return next(creatErr(401, " InvInvalid email or password"));
 
     // Check if the password is correct
+
     const isMatch = await compare(password, loginUser.password);
     console.log(" isMactch:", isMatch, password);
     if (!isMatch) {
       return next(creatErr(401, "InvInvalid email or password"));
     }
     if (!loginUser.verified)
+
       return next(creatErr(404, "please conform your email"));
     const createToken = jwt.sign({ id: loginUser._id }, process.env.SECRET);
 

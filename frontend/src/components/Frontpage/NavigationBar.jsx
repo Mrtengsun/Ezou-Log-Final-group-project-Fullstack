@@ -4,20 +4,29 @@ import { BiMenuAltRight } from "react-icons/bi";
 import { AiOutlineCloseSquare } from "react-icons/ai";
 import { NavLink } from "react-router-dom";
 import { CreateaccountCTX } from "../contexts/CreateaccountCTX";
+import Darkmode from "./DarkMode/DarkMode";
+
 
 const NavigationBar = () => {
-  const { user } = useContext(CreateaccountCTX);
+
+  const { user,navigate } = useContext(CreateaccountCTX);
+
+
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const logo = ()=>{
+    navigate("/")
+  }
   const menuToggler = () => setMenuOpen((p) => !p);
 
   return (
     <nav className={styles.nav}>
       <div className={styles.nav__content}>
         <div>
-          <span className={styles.logo}>EZOU</span>
+          {/* <span className={styles.logo}>EZOU</span>
           <br />
-          <span className={styles.logo}>LOG</span>
+          <span className={styles.logo}>LOG</span> */}
+          <img onClick={logo} src="/images/logo.png" alt="logo" />
         </div>
         <div>
           <ul
@@ -37,10 +46,7 @@ const NavigationBar = () => {
           </ul>
         </div>
         <div>
-          {/* <div className={styles.switch}>
-            <input id={styles.checkbox1} type="checkbox" />
-            <label for="checkbox1"></label>
-          </div> */}
+          <Darkmode />
 
           <div>
             {!user ? (
