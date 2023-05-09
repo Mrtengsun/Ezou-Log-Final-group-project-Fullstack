@@ -53,6 +53,7 @@ const NavigationBar = () => {
           <Darkmode />
 
           <div>
+
             {!user?
             /* //login in button will display when user is not log in */
             <button className={styles.loginbutton}>
@@ -67,6 +68,7 @@ const NavigationBar = () => {
               />
               <button className={styles.loginbutton} onClick={logOut}>LogOut</button>
             </div>}
+
           </div>
 
           <button className={styles.__open} onClick={menuToggler}>
