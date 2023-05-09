@@ -19,7 +19,9 @@ const LoginComponent = () => {
     const config = {
       method: "Post",
       headers: {
+
         "Content-Type": "application/json",
+
       },
       body: JSON.stringify(loginData),
     };
@@ -27,6 +29,7 @@ const LoginComponent = () => {
     fetch(`http://localhost:5000/api/user/login`, config)
       .then((res) => res.json())
       .then((result) => {
+
         if(result.user)
         {
 
@@ -41,6 +44,7 @@ const LoginComponent = () => {
       }else{
         setErrors(result.message)
       }
+
       })
       .catch((err) => console.log(err));
   };
