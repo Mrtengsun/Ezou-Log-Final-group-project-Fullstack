@@ -7,11 +7,7 @@ import { CreateaccountCTX } from "../contexts/CreateaccountCTX";
 import Darkmode from "./DarkMode/DarkMode";
 
 const NavigationBar = () => {
-
-
-  const { user,navigate } = useContext(CreateaccountCTX);
-
-
+  const { user, navigate } = useContext(CreateaccountCTX);
 
   const [menuOpen, setMenuOpen] = useState(false);
 

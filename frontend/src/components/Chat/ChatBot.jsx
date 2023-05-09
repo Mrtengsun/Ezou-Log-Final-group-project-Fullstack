@@ -59,7 +59,7 @@ const ChatBot = () => {
       setTextList((list) => [...list, data]);
     });
   }, [socket]);
-  console.log(textList);
+  // console.log(textList);
 
   return (
     <div>
