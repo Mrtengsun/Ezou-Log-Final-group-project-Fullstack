@@ -1,7 +1,7 @@
 import { useState, createContext, useRef, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
-
 import account from "./UserReducer";
+
 
 const themeMode = JSON.parse(localStorage.getItem("themeKey")) || "light";
 const existUser = JSON.parse(localStorage.getItem("user")) || null;
@@ -27,6 +27,7 @@ const CreateaccountCTXProvider = ({ children }) => {
   const state = useRef();
   const country = useRef();
   const profession = useRef();
+
   const navigate = useNavigate();
 
   const changeTheme = () => {
@@ -63,11 +64,13 @@ const CreateaccountCTXProvider = ({ children }) => {
           user,
           setUser,
           navigate,
+
           changeTheme,
           theme,
           setTheme,
           token,
           setToken,
+
         }}
       >
         {children}
