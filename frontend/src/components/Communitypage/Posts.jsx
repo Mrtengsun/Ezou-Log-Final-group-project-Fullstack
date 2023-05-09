@@ -33,9 +33,17 @@ const Posts = () => {
       setComment(false);
     }
   };
+  const topicHandler = () => {
+    const open = document.getElementById("pp");
+    const openTop = document.getElementById("left");
+    open.classList.remove("post");
+    open.classList.add("post2", "section-top");
+    openTop.classList.remove("section-left");
+    openTop.classList.add("left");
+  };
   return (
-    <div className="post">
-      <div className="section-left">
+    <div className="post" id="pp">
+      <div className="section-left" id="left">
         <div className="image">
           <img
             src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZLYSDVq9-CIJU69RPUN7o5f8NzRq0oMVsvmzAtv5J-WcPsCeB8sRlGETiuNfkxhTnwhc&usqp=CAU"
@@ -47,9 +55,10 @@ const Posts = () => {
           <p>Avatar Musterman</p>
         </div>
       </div>
-      <div className="section-right">
+      <div className="section-right" id="right">
         <div>
-          <h3>Topic</h3>
+          <h3 onClick={topicHandler}>Topic</h3>
+
           <p>description</p>
         </div>
         <div className="clicks">

@@ -70,10 +70,11 @@ const conformedEmail = async (req, res, next) => {
 const logIn = async (req, res, next) => {
   try {
     const { email, password } = req.body;
-
+ 
     // Find the user with the matching email
     const loginUser = await User.findOne({ email });
-    if (!loginUser) return next(creatErr(401, " InvInvalid email or password"));
+    if (!loginUser) return next(creatErr(401, " InvInvalid email or "));
+
 
     // Check if the password is correct
 

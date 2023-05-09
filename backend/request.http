@@ -4,8 +4,8 @@ Content-Type: application/json
 {
     "firstName" : "Maria",
     "lastName" : "Jesus",
-    "email": "diouanijalouka@gmail.com",
-    "password": "123456789",
+    "email": "ntiamoah11@gmail.com",
+    "password": "passsword",
     "placeOfBirth": "berlin",
     "gender" : "man",
     "phoneNumber" : 125465879854554,
@@ -19,8 +19,8 @@ Content-Type: application/json
 
 {
 
-    "email": "diouanijalouka@gmail.com",
-    "password": "123456789"
+    "email": "ntiamoah11@gmail.com",
+    "password": "passsword"
     
 }
 

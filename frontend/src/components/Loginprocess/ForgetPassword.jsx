@@ -1,40 +1,37 @@
-import React, { useRef } from "react";
+
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 import "./ForgetPassword.scss"
 import axios from 'axios'
+import { loginContext } from "../contexts/LoginContext";
 
 const ForgetPassword = () => {
+  const {setEmail,email}= useContext(loginContext)
   
-  const inputEmail= useRef()
-      const handleSubmit =(e)=>{
-    e.preventDefault()
-    const data= {
-      email:inputEmail.current.value
-
-    }
-    axios.post('ForgetPassword',data)
+    axios.post(`http://localhost:3000/ForgetPassword`,{email:email})
     .then(res=>{
       console.log(res)
     }).catch(err=>{
   console.log(err)
     })
-      }
+      
 
   return(
     
     <div className="cover">
     <div className="loginbox">
           <h1>Forget Password</h1>
-      <form onSubmit={handleSubmit}>
+      <form >
         <div className="inputbox">
           <div className="input-container">
             <label type="email" className="data">Email</label>
-          <input type="text" ref={inputEmail} />
+          <input type="text" onClick={()=> setEmail(e.target.value)}/>
           
           <label type="text" className="data">FullName</label>
           <input type="text" />  
         </div>
            
-        <button type="submit" className="btn"> <a href="">Continue</a></button>
+        <Link  to="/Resetpassword"><button className="btn"> Continue</button></Link>
         </div>
       </form>
     </div>

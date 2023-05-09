@@ -50,6 +50,7 @@ h1{
  .account{
   text-decoration: none;
   color: $primary;
+  margin-left: 10px;
  }
  .account:hover{
   color: aqua;
@@ -63,7 +64,7 @@ h1{
  display: flex;
  justify-content: space-evenly;
  align-items: center;
- padding: 2rem;
+ 
  font-family: $text-font;
 
  .account{

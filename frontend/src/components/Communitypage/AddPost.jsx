@@ -38,6 +38,10 @@ const AddPost = () => {
   const addPostHandler = () => {
     setPopUp(true);
   };
+  const topicHandler = () => {
+    const open = document.getElementById("p-section");
+    open.classList.remove("post-section");
+  };
   return (
     <div className="addpost">
       <div>
@@ -77,8 +81,8 @@ const AddPost = () => {
           </button>
         </div>
       </CommunityPopUp>
-      <div className="post-section">
-        <Posts />
+      <div className="post-section" id="p-section">
+        <Posts onClick={topicHandler} />
       </div>
     </div>
   );
