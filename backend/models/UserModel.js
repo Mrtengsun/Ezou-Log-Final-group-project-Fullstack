@@ -8,10 +8,6 @@ const addressSchema = new Schema(
       type: String,
       required: true,
     },
-    // city: {
-    //   type: String,
-    //   required: true,
-    // },
     postalCode: {
       type: Number,
       required: true,
@@ -92,26 +88,7 @@ const userSchema = new Schema(
     timestamps: true,
   }
 );
-// Hash the password before saving the user to the database
-userSchema.pre("save", async function () {
-  try {
-    const hashPassword = await hash(this.password, 10);
-    this.password = hashPassword;
-  } catch (error) {
-    console.log(error);
-  }
-});
-// Add a method to the schema to compare passwords
 
-userSchema.methods.comparePassword = async function (candidatePassword) {
-  try {
-    const isMatch = await compare(candidatePassword, this.password);
-    console.log(isMatch);
-    return isMatch;
-  } catch (error) {
-    throw new Error(error);
-  }
-};
 
 const User = model("user", userSchema);
 export default User;

@@ -1,5 +1,6 @@
 @import "../../style/variable.scss";
 
+
 .hero {
   display: flex;
   flex-direction: column;
@@ -10,9 +11,11 @@
   .header {
     font-family: $hero-page;
     color: $text-gray;
-    font-size: 4rem;
+    font-size: 5rem;
+    
     width: fit-content;
   }
+ 
   .buttm {
     background: $primary;
     padding: 0.8rem 1.5rem;
@@ -38,3 +41,4 @@
     }
   }
 }
+

@@ -1,9 +1,12 @@
 import MainPath from "./components/mainPath/MainPath.jsx";
-import LoginContextProvider from "./components/contexts/LoginContext.jsx";
+import "./app.scss";
+import { useContext } from "react";
+import { CreateaccountCTX } from "./components/contexts/CreateaccountCTX.jsx";
 
 const App = () => {
+  const { theme } = useContext(CreateaccountCTX);
   return (
-    <div>
+    <div id={theme}>
       <MainPath />
     </div>
   );

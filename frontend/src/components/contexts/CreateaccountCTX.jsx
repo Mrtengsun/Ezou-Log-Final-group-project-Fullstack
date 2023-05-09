@@ -3,10 +3,13 @@ import { useNavigate } from "react-router-dom";
 import account from "./UserReducer";
 
 
+const themeMode = JSON.parse(localStorage.getItem("themeKey")) || "light";
+
 export const CreateaccountCTX = createContext();
 const existUser = JSON.parse(localStorage.getItem("user"))||null
 const CreateaccountCTXProvider = ({ children }) => {
   const [user, setUser] = useState(existUser)
+  const [theme, setTheme] = useState(themeMode);
   const firstName = useRef();
   const lastName = useRef();
   const email = useRef();

@@ -5,7 +5,8 @@
   flex-direction: column;
   align-items: center;
   margin: auto;
-  height: 100vh;
+  // height: 100vh;
+  padding: 4rem 0;
   width: 80vw;
   justify-content: center;
 
@@ -13,6 +14,9 @@
     font-family: $text-font;
     font-size: 2rem;
     padding-top: 3rem;
+    color: rgba($primary, $alpha: 0.4);
+    padding-bottom: 3rem;
+
   }
 
   form {
@@ -60,6 +64,7 @@
         box-shadow: none;
         height: 1.9rem;
         margin-top: 0.7rem;
+        background-color: $text-white;
 
         &:hover {
           border: 2px solid $primary;
@@ -98,7 +103,7 @@
 @media screen and (max-width: 690px) {
   .account {
     height: auto;
-    
+    padding: 0;
     
     .form {
       display: grid;
@@ -116,5 +121,12 @@
         margin-bottom: -16rem;
        
     }
+  }
+}
+
+@media screen and (min-width: 1700px) {
+
+  .account{
+    height: 100vh;
   }
 }

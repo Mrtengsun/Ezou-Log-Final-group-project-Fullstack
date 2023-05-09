@@ -7,13 +7,6 @@ import LoginContextProvider from "./components/contexts/LoginContext.jsx";
 import CreateaccountCTXProvider from "./components/contexts/CreateaccountCTX.jsx";
 
 import ChatContextProvider from "./components/contexts/chatContext.js";
-import { io } from "socket.io-client";
-
-const socket = io("http://localhost:5000");
-
-// socket.on("connect", () => {
-//   console.log(socket.id);
-// });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
