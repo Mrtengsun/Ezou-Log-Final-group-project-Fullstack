@@ -9,12 +9,14 @@ import Darkmode from "./DarkMode/DarkMode";
 const NavigationBar = () => {
 
 
+
   const { user,navigate } = useContext(CreateaccountCTX);
 
  const logOut = ()=>{
   localStorage.clear()
   navigate("/")
  }
+
 
   const [menuOpen, setMenuOpen] = useState(false);
 
