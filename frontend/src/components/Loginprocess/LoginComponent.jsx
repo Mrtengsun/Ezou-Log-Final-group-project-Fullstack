@@ -16,7 +16,7 @@ const LoginComponent = () => {
     const config = {
       method: "Post",
       headers: {
-        "Conten-Type": "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(loginData),
     };
