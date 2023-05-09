@@ -61,7 +61,7 @@ const conformedEmail = async (req, res, next) => {
       { verified: true }
     );
 
-    res.redirect("https://##########/login");
+    res.redirect("http://localhost:3000/login");
   } catch (error) {
     next(creatErr(401, error));
   }
