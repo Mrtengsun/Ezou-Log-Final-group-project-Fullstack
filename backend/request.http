@@ -2,9 +2,9 @@ POST http://localhost:5000/api/user/register
 Content-Type: application/json
 
 {
-    "firstName" : "Maria",
-    "lastName" : "Jesus",
-    "email": "ntiamoah11@gmail.com",
+    "firstName" : "haha",
+    "lastName" : "kitty",
+    "email": "haha@haha.com",
     "password": "passsword",
     "placeOfBirth": "berlin",
     "gender" : "man",

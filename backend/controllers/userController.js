@@ -7,13 +7,13 @@ import QRCode from "qrcode";
 import path from "path";
 import { compare, hash } from "bcrypt";
 
-
 // register a new user
 const register = async (req, res, next) => {
   try {
     const hashPassword = await hash(req.body.password, 10);
     req.body.password = hashPassword;
     const newUser = await User.create(req.body);
+    console.log(newUser);
     const qrCode = await QRCode.toDataURL(JSON.stringify(newUser));
     newUser.qrCode = qrCode;
     await newUser.save();
@@ -70,11 +70,10 @@ const conformedEmail = async (req, res, next) => {
 const logIn = async (req, res, next) => {
   try {
     const { email, password } = req.body;
- 
+
     // Find the user with the matching email
     const loginUser = await User.findOne({ email });
     if (!loginUser) return next(creatErr(401, " InvInvalid email or "));
-
 
     // Check if the password is correct
 
@@ -84,7 +83,6 @@ const logIn = async (req, res, next) => {
       return next(creatErr(401, "InvInvalid email or password"));
     }
     if (!loginUser.verified)
-
       return next(creatErr(404, "please conform your email"));
     const createToken = jwt.sign({ id: loginUser._id }, process.env.SECRET);
 
