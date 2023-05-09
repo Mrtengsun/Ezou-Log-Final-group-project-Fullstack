@@ -27,7 +27,7 @@ const MainPath = () => {
 
         <Route path="/support" element={<ChatBot />} />
         <Route path="/forgetpassword" element={<ForgetPassword />} />
-        <Route path="/logincomponent" element={<LoginComponent />} />
+        <Route path="/login" element={<LoginComponent />} />
         <Route path="/Resetpassword" element={<ResetPassword />} />
            <Route path="/Recovered" element={<Recovered/>} />
         <Route path="/otpinput" element={<OtpInput/>} />
