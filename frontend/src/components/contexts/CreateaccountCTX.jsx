@@ -4,11 +4,14 @@ import { useNavigate } from "react-router-dom";
 import account from "./UserReducer";
 
 const themeMode = JSON.parse(localStorage.getItem("themeKey")) || "light";
-
+const existUser = JSON.parse(localStorage.getItem("user")) || null;
+const existtoken = JSON.parse(localStorage.getItem("token")) || null;
 export const CreateaccountCTX = createContext();
-const existUser = JSON.parse(localStorage.getItem("user"))||null
+
 const CreateaccountCTXProvider = ({ children }) => {
-  const [user, setUser] = useState(existUser)
+
+  const [token, setToken] = useState(existtoken);
+  const [user, setUser] = useState(existUser);
   const [theme, setTheme] = useState(themeMode);
   const firstName = useRef();
   const lastName = useRef();
@@ -24,16 +27,17 @@ const CreateaccountCTXProvider = ({ children }) => {
   const state = useRef();
   const country = useRef();
   const profession = useRef();
- const navigate = useNavigate()
+  const navigate = useNavigate();
 
- const changeTheme = () => {
-  setTheme((backgColor) => (backgColor === "light" ? "dark" : "light"));
-};
- 
+  const changeTheme = () => {
+    setTheme((backgColor) => (backgColor === "light" ? "dark" : "light"));
+  };
+
   const [errors, setErrors] = useState(null);
 
-  
   const [statereducer, dispatch] = useReducer(account, {});
+
+ 
 
   return (
     <div>
@@ -59,8 +63,11 @@ const CreateaccountCTXProvider = ({ children }) => {
           user,
           setUser,
           navigate,
-          changeTheme, theme, setTheme,
-          
+          changeTheme,
+          theme,
+          setTheme,
+          token,
+          setToken,
         }}
       >
         {children}
