@@ -7,7 +7,14 @@ import { CreateaccountCTX } from "../contexts/CreateaccountCTX";
 import Darkmode from "./DarkMode/DarkMode";
 
 const NavigationBar = () => {
-  const { user, navigate } = useContext(CreateaccountCTX);
+
+
+  const { user,navigate } = useContext(CreateaccountCTX);
+
+ const logOut = ()=>{
+  localStorage.clear()
+  navigate("/")
+ }
 
   const [menuOpen, setMenuOpen] = useState(false);
 
@@ -46,22 +53,22 @@ const NavigationBar = () => {
           <Darkmode />
 
           <div>
-            {!user ? (
-              /* //login in button will display when user is not log in */
-              <button className={styles.loginbutton}>
-                <NavLink to="/loginComponent">Login</NavLink>
-              </button>
-            ) : (
-              /* logout and avater will display when user is log in  */
-              <div className={styles.avatar__logout}>
-                <img
-                  src="/images/Neytiri_Profilbild.webp"
-                  alt=""
-                  className={styles.avatar}
-                />
-                <button className={styles.loginbutton}>LogOut</button>
-              </div>
-            )}
+
+            {!user?
+            /* //login in button will display when user is not log in */
+            <button className={styles.loginbutton}>
+              <NavLink to="/loginComponent">Login</NavLink>
+            </button>:
+            /* logout and avater will display when user is log in  */
+            <div className={styles.avatar__logout}>
+              <img
+                src="/images/Neytiri_Profilbild.webp"
+                alt=""
+                className={styles.avatar}
+              />
+              <button className={styles.loginbutton} onClick={logOut}>LogOut</button>
+            </div>}
+
           </div>
 
           <button className={styles.__open} onClick={menuToggler}>

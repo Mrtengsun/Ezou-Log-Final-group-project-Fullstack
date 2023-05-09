@@ -29,7 +29,7 @@ const account = async (prev, action) => {
       });
       const user = await register.json();
       if (user._id) {
-        action.navigate("/login");
+        action.navigate("logincomponent");
         return;
       }
       console.log(user);
