@@ -3,12 +3,12 @@ import { Link } from "react-router-dom";
 import "./Loginstyle.scss";
 import { CreateaccountCTX } from "../contexts/CreateaccountCTX";
 
-
 const LoginComponent = () => {
-  const { setUser, setToken ,navigate,errors, setErrors} = useContext(CreateaccountCTX);
+  const { setUser, setToken, navigate, errors, setErrors } =
+    useContext(CreateaccountCTX);
   const userInput = useRef();
   const passwordInput = useRef();
- 
+
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(userInput.current.value);
@@ -19,9 +19,7 @@ const LoginComponent = () => {
     const config = {
       method: "Post",
       headers: {
-
         "Content-Type": "application/json",
-
       },
       body: JSON.stringify(loginData),
     };
@@ -29,22 +27,17 @@ const LoginComponent = () => {
     fetch(`http://localhost:5000/api/user/login`, config)
       .then((res) => res.json())
       .then((result) => {
+        if (result.user) {
+          setUser(result.user);
+          setToken(result.token);
 
-        if(result.user)
-        {
+          localStorage.setItem("token", JSON.stringify(result.token));
+          localStorage.setItem("user", JSON.stringify(result.user));
 
-        
-        setUser(result.user);
-        setToken(result.token);
-
-        localStorage.setItem("token", JSON.stringify(result.token));
-        localStorage.setItem("user", JSON.stringify(result.user));
-        
-        navigate("/")
-      }else{
-        setErrors(result.message)
-      }
-
+          navigate("/");
+        } else {
+          setErrors(result.message);
+        }
       })
       .catch((err) => console.log(err));
   };
@@ -53,11 +46,11 @@ const LoginComponent = () => {
     <div className="cover">
       <div className="loginbox">
         <h1>Login</h1>
-        {errors&& <p>{errors}</p>}
+        {errors && <p>{errors}</p>}
         <form onSubmit={handleSubmit}>
           <div className="inputbox">
             <div className="input-container">
-              <input type="email" placeholder="username" ref={userInput} />
+              <input type="email" placeholder="email" ref={userInput} />
               <br /> <br />
               <input
                 type="password"
