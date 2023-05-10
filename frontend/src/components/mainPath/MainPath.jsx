@@ -6,11 +6,12 @@ import AboutUs from "../Aboutus/AboutUs.jsx";
 import CreateAccount from "../Loginprocess/CreateAccount.jsx";
 import Footer from "../Frontpage/Footer.jsx";
 import LoginComponent from "../Loginprocess/LoginComponent.jsx";
-import Recovered from "../Loginprocess/Recoverd.jsx";
+
 import ResetPassword from "../Loginprocess/ResetPassword.jsx";
 import ForgetPassword from "../Loginprocess/ForgetPassword.jsx";
 import ChatBot from "../Chat/ChatBot.jsx";
 import OtpInput from "../Loginprocess/OtpInput.jsx";
+import AddEmail from "../Loginprocess/AddEmail.jsx";
 
 const MainPath = () => {
   return (
@@ -28,8 +29,12 @@ const MainPath = () => {
         <Route path="/forgetpassword" element={<ForgetPassword />} />
         <Route path="/login" element={<LoginComponent />} />
         <Route path="/Resetpassword" element={<ResetPassword />} />
+
+        <Route path="/otpinput" element={<OtpInput/>} />
+        <Route path="/AddEmail" element={<AddEmail/>} />
+
         <Route path="/Recovered" element={<Recovered />} />
-        <Route path="/otpinput" element={<OtpInput />} />
+
         <Route path="/register" element={<CreateAccount />} />
 
         <Route path="/logout" />
