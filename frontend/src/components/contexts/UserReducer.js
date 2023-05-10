@@ -30,7 +30,7 @@ const account = async (prev, action) => {
       const user = await register.json();
       console.log(user);
       if (user._id) {
-        action.navigate("logincomponent");
+        action.navigate("login");
         return;
       }
     } catch (error) {
