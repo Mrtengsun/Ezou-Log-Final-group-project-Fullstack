@@ -7,7 +7,6 @@ import QRCode from "qrcode";
 import path from "path";
 import { compare, hash } from "bcrypt";
 
-
 // register a new user
 const register = async (req, res, next) => {
   try {
@@ -61,7 +60,7 @@ const conformedEmail = async (req, res, next) => {
       { verified: true }
     );
 
-    res.redirect("https://##########/login");
+    res.redirect("http://localhost:3000/login");
   } catch (error) {
     next(creatErr(401, error));
   }
@@ -70,11 +69,10 @@ const conformedEmail = async (req, res, next) => {
 const logIn = async (req, res, next) => {
   try {
     const { email, password } = req.body;
- 
+
     // Find the user with the matching email
     const loginUser = await User.findOne({ email });
     if (!loginUser) return next(creatErr(401, " InvInvalid email or "));
-
 
     // Check if the password is correct
 
@@ -84,7 +82,6 @@ const logIn = async (req, res, next) => {
       return next(creatErr(401, "InvInvalid email or password"));
     }
     if (!loginUser.verified)
-
       return next(creatErr(404, "please conform your email"));
     const createToken = jwt.sign({ id: loginUser._id }, process.env.SECRET);
 
@@ -112,6 +109,8 @@ const update = async (req, res, next) => {
 };
 // sending code to user email to recover his password
 const sendCode = async (req, res, next) => {
+ console.log(req.body)
+
   try {
     // Check if user with this email exists in the database
     const user = await User.findOne({ email: req.params.email });
@@ -121,9 +120,9 @@ const sendCode = async (req, res, next) => {
     }
 
     // Generate a unique random 5 digital number for the password reset email
-    const randomInt = Math.floor(Math.random() * 90000) + 10000;
+    const randomInt = Math.floor(Math.random() * 9000) + 1000;
 
-    const sent = await sendEmail(
+    const sentCode = await sendEmail(
       req.params.email,
       "Reset your Password",
       `<div style="font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2">

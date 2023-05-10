@@ -11,6 +11,7 @@ const NavigationBar = () => {
 
   const { user,navigate,setUser } = useContext(CreateaccountCTX);
 
+
  const logOut = ()=>{
   localStorage.removeItem("user")
   localStorage.removeItem("token")
@@ -57,6 +58,7 @@ const NavigationBar = () => {
           <Darkmode />
 
           <div>
+
             {!user?
             /* //login in button will display when user is not log in */
             <button className={styles.loginbutton}>
@@ -71,6 +73,7 @@ const NavigationBar = () => {
               />
               <button className={styles.loginbutton} onClick={logOut}>LogOut</button>
             </div>}
+
           </div>
 
           <button className={styles.__open} onClick={menuToggler}>
