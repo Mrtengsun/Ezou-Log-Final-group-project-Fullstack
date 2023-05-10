@@ -3,9 +3,10 @@ import { Link } from "react-router-dom";
 import "./Loginstyle.scss";
 import { CreateaccountCTX } from "../contexts/CreateaccountCTX";
 
-
 const LoginComponent = () => {
+
   const { setUser, setToken, navigate, errors, setErrors } = useContext(CreateaccountCTX);
+
   const userInput = useRef();
   const passwordInput = useRef();
 
@@ -29,16 +30,17 @@ const LoginComponent = () => {
       .then((result) => {
         if (result.user) {
 
-
           setUser(result.user);
           setToken(result.token);
 
           localStorage.setItem("token", JSON.stringify(result.token));
           localStorage.setItem("user", JSON.stringify(result.user));
 
+
           navigate("/")
         } else {
           setErrors(result.message)
+
         }
       })
       .catch((err) => console.log(err));
@@ -50,9 +52,11 @@ const LoginComponent = () => {
         <h1>Login</h1>
         {errors && <p>{errors}</p>}
         <form onSubmit={handleSubmit}>
+
           <div className="inputbox-2">
             <div className="input-container-2">
               <input type="email" placeholder="username" ref={userInput} />
+
               <br /> <br />
               <input
                 type="password"

@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+
 import { CommunityContext } from "../contexts/communityContext";
 import "./post.scss";
 
@@ -12,6 +13,9 @@ const Posts = () => {
     setCommentSum,
     thumbSum,
     setThumbSum,
+    sendComment,
+    setSendComment,
+    commentInput,
   } = useContext(CommunityContext);
 
   const thumbsHandler = () => {
@@ -36,10 +40,23 @@ const Posts = () => {
   const topicHandler = () => {
     const open = document.getElementById("pp");
     const openTop = document.getElementById("left");
+    const openBtm = document.getElementById("right");
     open.classList.remove("post");
-    open.classList.add("post2", "section-top");
+    open.classList.add("post2");
     openTop.classList.remove("section-left");
-    openTop.classList.add("left");
+    openTop.classList.add("section-top");
+    openBtm.classList.remove("section-right");
+    openBtm.classList.add("section-btm");
+  };
+
+  const sendCommentHandler = () => {
+    if (commentInput) {
+      const commentData = {
+        author: "musterfrau",
+        comment: commentInput.current.value,
+      };
+      setSendComment((comment) => [...comment, commentData]);
+    }
   };
   return (
     <div className="post" id="pp">
@@ -82,9 +99,47 @@ const Posts = () => {
             )}
           </div>
         </div>
+        {sendComment
+          ? sendComment.map((item, i) => {
+              return (
+                <div className={i}>
+                  <div>
+                    <h4>{item.author}</h4>
+                    <p>{item.comment}</p>
+                  </div>
+                  {/* <div className="clicks">
+                    <div onClick={thumbsHandler}>
+                      {thumbsUp ? (
+                        <i className="fa-solid fa-thumbs-up">
+                          <span
+                            style={{ marginLeft: "0.5rem", fontSize: "large" }}
+                          >
+                            {thumbSum}
+                          </span>
+                        </i>
+                      ) : (
+                        <i className="fa-regular fa-thumbs-up"></i>
+                      )}
+                    </div>
+                    <div onClick={commentsHandler}>
+                      {comment ? (
+                        <i className="fa-solid fa-comment"></i>
+                      ) : (
+                        <i className="fa-regular fa-comment"></i>
+                      )}
+                    </div>
+                  </div> */}
+                </div>
+              );
+            })
+          : ""}
         {comment ? (
           <div className="commented">
-            <textarea placeholder="Leave a comment"></textarea>
+            <textarea
+              placeholder="Leave a comment"
+              ref={commentInput}
+              onKeyDown={(e) => e.key === "Enter" && sendCommentHandler()}
+            ></textarea>
           </div>
         ) : (
           ""
