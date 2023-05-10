@@ -20,7 +20,7 @@ const account = async (prev, action) => {
 
         profession: action.profession.current.value,
       };
-      const register = await fetch("http://localhost:1200/api/user/register", {
+      const register = await fetch("http://localhost:5000/api/user/register", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {
@@ -29,7 +29,7 @@ const account = async (prev, action) => {
       });
       const user = await register.json();
       if (user._id) {
-        action.navigate("/login");
+        action.navigate("logincomponent");
         return;
       }
       console.log(user);

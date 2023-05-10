@@ -1,42 +1,54 @@
 
-import { useContext } from "react";
+import { createContext, useContext, useState } from "react";
 import { Link } from "react-router-dom";
-import "./ForgetPassword.scss"
-import axios from 'axios'
+import "./ForgetPassword.scss";
+import { CreateaccountCTX } from "../contexts/CreateaccountCTX";
 import { loginContext } from "../contexts/LoginContext";
 
+
+
+
 const ForgetPassword = () => {
-  const {setEmail,email}= useContext(loginContext)
-  
-    axios.post(`http://localhost:3000/ForgetPassword`,{email:email})
-    .then(res=>{
-      console.log(res)
-    }).catch(err=>{
-  console.log(err)
-    })
-      
+  const {navigate,setCode} = useContext(CreateaccountCTX)
+  const { email, setEmail}  = useContext(loginContext)
+  const handleSubmit = (e) => {
+e.preventDefault()
+console.log(email)
+    fetch(`http://localhost:5000/api/user/send-code/${email}`)
+      .then(res => 
+       res.json()
+     ).then(result=>{
+      if(result.randomInt){
+        setCode(result.randomInt)
+        navigate('otpinput')
+      }
+     })
+     .catch(err => {
+        console.log(err)
+      })
+  }
 
-  return(
-    
-    <div className="cover">
-    <div className="loginbox">
-          <h1>Forget Password</h1>
-      <form >
-        <div className="inputbox">
-          <div className="input-container">
-            <label type="email" className="data">Email</label>
-          <input type="text" onClick={()=> setEmail(e.target.value)}/>
-          
-          <label type="text" className="data">FullName</label>
-          <input type="text" />  
-        </div>
-           
-        <Link  to="/Resetpassword"><button className="btn"> Continue</button></Link>
-        </div>
-      </form>
+
+
+  return (
+
+    <div className="maincovered">
+      <div className="loginboxed">
+        <h1>Forget Password</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="inputboxed">
+            <div className="input-containered">
+              <label type="email" className="data">Email</label>
+              <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
+
+            </div>
+
+            <button className="btn" type="submit"> Continue</button>
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
 
- )
+  )
 }
 export default ForgetPassword;
