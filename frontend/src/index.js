@@ -12,14 +12,14 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <BrowserRouter>
-  <LoginContextProvider>
-    <CommunityContextProvider>
+    <LoginContextProvider>
       <CreateaccountCTXProvider>
-        <ChatContextProvider>
-          <App />
-        </ChatContextProvider>
+        <CommunityContextProvider>
+          <ChatContextProvider>
+            <App />
+          </ChatContextProvider>
+        </CommunityContextProvider>
       </CreateaccountCTXProvider>
-    </CommunityContextProvider>
     </LoginContextProvider>
   </BrowserRouter>
 );

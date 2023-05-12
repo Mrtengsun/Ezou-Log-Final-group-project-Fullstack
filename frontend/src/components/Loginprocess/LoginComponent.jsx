@@ -27,6 +27,7 @@ const LoginComponent = () => {
     fetch(`http://localhost:5000/api/user/login`, config)
       .then((res) => res.json())
       .then((result) => {
+        console.log(result);
         if (result.user) {
           setUser(result.user);
           setToken(result.token);

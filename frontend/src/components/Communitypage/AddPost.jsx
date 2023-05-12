@@ -1,29 +1,41 @@
-import React from "react";
 import "./addpost.scss";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CommunityContext } from "../contexts/communityContext.js";
 import CommunityPopUp from "./CommunityPopUp.jsx";
 import Posts from "./Posts";
+import { CreateaccountCTX } from "../contexts/CreateaccountCTX";
 
 const AddPost = () => {
-  const { popUp, setPopUp, titleInput, descriptionInput } =
-    useContext(CommunityContext);
+  const {
+    popUp,
+    setPopUp,
+    titleInput,
+    descriptionInput,
+    setAddPost,
+    thumbSum,
+    sendComment,
+    getPost,
+    setGetPost,
+  } = useContext(CommunityContext);
+  const { user, token } = useContext(CreateaccountCTX);
   const submitHandler = (e) => {
     e.preventDefault();
     const addPostData = {
       topic: titleInput.current.value,
       description: descriptionInput.current.value,
     };
+    setAddPost((data) => [...data, addPostData]);
     console.log(addPostData);
     const config = {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(addPostData),
     };
 
-    fetch("http://localhost:3000/community", config)
+    fetch("http://localhost:5000/api/community/", config)
       .then((res) => {
         return res.json();
       })
@@ -32,16 +44,28 @@ const AddPost = () => {
       })
       .catch((err) => {
         console.log(err, "coming from catch communityPopUp");
-      });
+      }, []);
     setPopUp(false);
   };
+
+  useEffect(() => {
+    const config = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    };
+    fetch("http://localhost:5000/api/community/", config)
+      .then((response) => response.json())
+      .then((result) => setGetPost(result))
+      .catch((err) => console.log(err));
+  }, []);
+
   const addPostHandler = () => {
     setPopUp(true);
   };
-  const topicHandler = () => {
-    const open = document.getElementById("p-section");
-    open.classList.remove("post-section");
-  };
+
   return (
     <div className="addpost">
       <div>
@@ -51,7 +75,7 @@ const AddPost = () => {
         </button>
       </div>
       <CommunityPopUp trigger={popUp} setTrigger={setPopUp}>
-        <form action="/addpost" className="communityForm">
+        <form className="communityForm">
           <h1>Ask me</h1>
 
           <div className="communityInput">
@@ -82,7 +106,7 @@ const AddPost = () => {
         </div>
       </CommunityPopUp>
       <div className="post-section" id="p-section">
-        <Posts onClick={topicHandler} />
+        <Posts />
       </div>
     </div>
   );
