@@ -9,18 +9,27 @@ import Darkmode from "./DarkMode/DarkMode";
 const NavigationBar = () => {
   const { user, navigate } = useContext(CreateaccountCTX);
 
-  const logOut = () => {
-    localStorage.clear();
-    navigate("/");
-  };
+
+  const { user,navigate,setUser } = useContext(CreateaccountCTX);
+
+
+ const logOut = ()=>{
+  localStorage.removeItem("user")
+  localStorage.removeItem("token")
+  setUser(null)
+  navigate("/")
+ }
+
+
 
   const [menuOpen, setMenuOpen] = useState(false);
+  const imageURL= user.imgProfile? `http://localhost:5000/api/user/profile-picture/${user._id}`:`/images/Neytiri_Profilbild.webp`;
 
   const logo = () => {
     navigate("/");
   };
   const menuToggler = () => setMenuOpen((p) => !p);
-
+    const community = user? "/community":"/login"
   return (
     <nav className={styles.nav}>
       <div className={styles.nav__content}>
@@ -35,12 +44,12 @@ const NavigationBar = () => {
             className={`${styles.list} ${menuOpen ? styles[`list--open`] : {}}`}
           >
             <li className={styles.list__items}>
-              <NavLink className={styles.link} to="/">
+              <NavLink className={styles.link} to="/homepage">
                 Home
               </NavLink>
             </li>
             <li className={styles.list__items}>
-              <NavLink to="/community">Community</NavLink>
+              <NavLink to={community}>Community</NavLink>
             </li>
             <li className={styles.list__items}>
               <NavLink to="/aboutus">About us</NavLink>
@@ -51,6 +60,7 @@ const NavigationBar = () => {
           <Darkmode />
 
           <div>
+
             {!user ? (
               /* //login in button will display when user is not log in */
               <button className={styles.loginbutton}>
@@ -60,7 +70,7 @@ const NavigationBar = () => {
               /* logout and avater will display when user is log in  */
               <div className={styles.avatar__logout}>
                 <img
-                  src="/images/Neytiri_Profilbild.webp"
+                  src={imageURL}
                   alt=""
                   className={styles.avatar}
                 />
@@ -69,6 +79,7 @@ const NavigationBar = () => {
                 </button>
               </div>
             )}
+
           </div>
 
           <button className={styles.__open} onClick={menuToggler}>

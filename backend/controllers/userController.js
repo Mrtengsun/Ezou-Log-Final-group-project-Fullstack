@@ -110,6 +110,8 @@ const update = async (req, res, next) => {
 };
 // sending code to user email to recover his password
 const sendCode = async (req, res, next) => {
+ console.log(req.body)
+
   try {
     // Check if user with this email exists in the database
     const user = await User.findOne({ email: req.params.email });
@@ -119,9 +121,9 @@ const sendCode = async (req, res, next) => {
     }
 
     // Generate a unique random 5 digital number for the password reset email
-    const randomInt = Math.floor(Math.random() * 90000) + 10000;
+    const randomInt = Math.floor(Math.random() * 9000) + 1000;
 
-    const sent = await sendEmail(
+    const sentCode = await sendEmail(
       req.params.email,
       "Reset your Password",
       `<div style="font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2">
