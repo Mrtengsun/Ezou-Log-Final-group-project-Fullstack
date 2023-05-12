@@ -19,8 +19,8 @@ Content-Type: application/json
 
 {
 
-    "email": "ntiamoah11@gmail.com",
-    "password": "passsword"
+    "email": "mrtengsun@gmail.com",
+    "password": "123456"
     
 }
 
@@ -37,7 +37,10 @@ Authorization: Bearer "please add your token hier"
      "description": "please i need some help, can some one tell me how to change password in Tick Tock"
 
 }
-
+###
+GET  http://localhost:5000/api/community/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NWI0YTI2YTQyYWExNjc4MWMzNWM0NSIsImlhdCI6MTY4Mzg5MDEwM30.7_oLSNQqMtM5fzNM_am8fJlKgCIs-uzUAO8FoyfxFk4
 
 ### add the comment in the post to the post conection
 PUT http://localhost:5000/api/community/addcomment/644030e929497b77bb19982e
