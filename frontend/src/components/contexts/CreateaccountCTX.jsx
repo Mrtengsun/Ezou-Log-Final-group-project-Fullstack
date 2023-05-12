@@ -9,7 +9,7 @@ const existtoken = JSON.parse(localStorage.getItem("token")) || null;
 export const CreateaccountCTX = createContext();
 
 const CreateaccountCTXProvider = ({ children }) => {
-
+  const [code,setCode]=useState(0)
   const [token, setToken] = useState(existtoken);
   const [user, setUser] = useState(existUser);
   const [theme, setTheme] = useState(themeMode);
@@ -70,7 +70,8 @@ const CreateaccountCTXProvider = ({ children }) => {
           setTheme,
           token,
           setToken,
-
+        code,
+        setCode
         }}
       >
         {children}

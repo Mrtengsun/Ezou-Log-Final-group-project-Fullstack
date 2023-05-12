@@ -2,6 +2,17 @@ import mongoose from "mongoose";
 import { compare, hash } from "bcrypt";
 
 const { Schema, model } = mongoose;
+const fotoSchema = new Schema(
+  {
+    fieldname: { type: String, required: true },
+    originalname: { type: String, required: true },
+    mimetype: { type: String, required: true },
+    filename: { type: String, required: true },
+    path: { type: String, required: true },
+    size: { type: Number, required: true },
+  },
+  { _id: false }
+);
 const addressSchema = new Schema(
   {
     street: {
@@ -75,6 +86,8 @@ const userSchema = new Schema(
     },
     communities: [{ type: Schema.Types.ObjectId, ref: "community" }],
     qrCode: { type: String },
+
+    imgProfile : {type:fotoSchema}
   },
 
   {

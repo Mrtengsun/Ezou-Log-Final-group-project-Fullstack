@@ -1,28 +1,25 @@
 import React, { useState } from 'react'
 import "./OtpInput.scss";
 import { useContext } from 'react';
-import { loginContext } from '../contexts/LoginContext';
+import { CreateaccountCTX } from '../contexts/CreateaccountCTX';
 
 const OtpInput = () => {
- const { email, otp, setPage } = useContext(loginContext);
- // const { timerCount, setTimer } = useState(60)
- const {OTPinput,setOTPinput}= useState([0,0,0,0])
- const { disable, setDisable } = useState(true)
+ const {code,navigate} = useContext(CreateaccountCTX);
+ const [OTPinput,setOTPinput]= useState(['','','',''])
+
 
  const resendOTP = () => {
-  if (disable) return;
+ navigate('forgetpassword')
 
-  axios.post('http://localhost:1200/recovery-email', {
-   OTP: otp, email: email
-  })
-   .then(() => setDisable(true))
-   .then(() => alert('A new OTP has been send to your email'))
-   // .then(() => setTimer(60))
-   .catch(console.log)
+
+ 
  }
 const verifyOTP =()=>{
- if(parseInt(OTPinput.join('')) === otp){
-  setPage('reset');
+  console.log(code)
+  console.log(parseInt(OTPinput.join('')))
+ if(parseInt(OTPinput.join('')) === code){
+  navigate('Resetpassword')
+  return;
  }
  alert('The code you entered is not correct,try resend the link')
  return;
@@ -41,14 +38,18 @@ const verifyOTP =()=>{
 // }, [disable]);
 
  return (
-  <div>
+  <div className='cover-1'>
+  <div className='loginbox-1'>
+    <div className='verified'>
    <p>Email Verification</p>
    <div>
-    we have send you an email {email}
+    please check your email
    </div>
-   <div>
-    <div className='box-1' >
+   </div>
+   <div className='inputbox-1'>
+    <div className='box-1'>
      <input type="text" 
+     value={OTPinput[0]}
        onChange={(e) =>
         setOTPinput([
           e.target.value,
@@ -62,7 +63,8 @@ const verifyOTP =()=>{
      />
     </div>
     <div className='box-1'>
-     <input type="text"
+     <input type="text" 
+     value={OTPinput[1]}
         onChange={(e) =>
          setOTPinput([
            OTPinput[0],
@@ -76,6 +78,7 @@ const verifyOTP =()=>{
     </div>
     <div className='box-1'>
      <input type="text"
+      value={OTPinput[2]}
          onChange={(e) =>
           setOTPinput([
             OTPinput[0],
@@ -89,6 +92,7 @@ const verifyOTP =()=>{
     </div>
     <div className='box-1'>
      <input type="text" 
+     value={OTPinput[3]}
        onChange={(e) =>
         setOTPinput([
           OTPinput[0],
@@ -106,25 +110,23 @@ const verifyOTP =()=>{
 
 
    <div className='flex'>
-    <div>
+    <div className="checkaccount">
      <a 
-     onClick={()=> verifyOTP}
+     onClick={verifyOTP}
      >Verify Account</a>
     </div>
 
     <div className='otp'>
      <p>Didn't Recieve code ?</p>{' '}
-     <a 
-     style={{
-      color: disable ? 'grey':'blue',
-      cursor: disable ? 'none': 'pointer',
-      textDecorationLine: disable ? 'none': 'underline'
-      }}
-      onClick={()=>resendOTP}>
-      {disable ? `Resend OTP in ${timerCount()}s` : 'Resend OTP'}
-      </a>
+    
+    <button
+      onClick={resendOTP}
+    >
+     send again      
+    </button>
     </div>
 
+   </div>
    </div>
   </div>
  )
