@@ -13,10 +13,11 @@ const register = async (req, res, next) => {
     const hashPassword = await hash(req.body.password, 10);
     req.body.password = hashPassword;
     const newUser = await User.create(req.body);
-    console.log(newUser);
+
     const qrCode = await QRCode.toDataURL(JSON.stringify(newUser));
     newUser.qrCode = qrCode;
     await newUser.save();
+
     // sending email to conformed the user email
     const sendingEmail = await sendEmail(
       req.body.email,
@@ -47,6 +48,7 @@ const register = async (req, res, next) => {
       </div>
       </div>`
     );
+
     res.send(newUser);
   } catch (error) {
     console.log(error);
@@ -73,6 +75,7 @@ const logIn = async (req, res, next) => {
 
     // Find the user with the matching email
     const loginUser = await User.findOne({ email });
+
     if (!loginUser) return next(creatErr(401, " InvInvalid email or "));
 
     // Check if the password is correct
