@@ -13,6 +13,7 @@ const register = async (req, res, next) => {
     const hashPassword = await hash(req.body.password, 10);
     req.body.password = hashPassword;
     const newUser = await User.create(req.body);
+    console.log(newUser);
     const qrCode = await QRCode.toDataURL(JSON.stringify(newUser));
     newUser.qrCode = qrCode;
     await newUser.save();

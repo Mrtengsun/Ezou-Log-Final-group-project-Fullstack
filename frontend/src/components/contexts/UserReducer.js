@@ -22,13 +22,13 @@ const account = async (prev, action) => {
       };
       const register = await fetch("http://localhost:5000/api/user/register", {
         method: "POST",
+        body: JSON.stringify(data),
         headers: {
           "Content-type": "application/json",
         },
-        body: JSON.stringify(data),
       });
       const user = await register.json();
-      console.log(user);
+
       if (user._id) {
         action.navigate("login");
         return;

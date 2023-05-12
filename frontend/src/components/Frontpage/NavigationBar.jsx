@@ -9,6 +9,7 @@ import Darkmode from "./DarkMode/DarkMode";
 const NavigationBar = () => {
 
 
+
   const { user,navigate,setUser } = useContext(CreateaccountCTX);
 
 
@@ -18,6 +19,7 @@ const NavigationBar = () => {
   setUser(null)
   navigate("/")
  }
+
 
 
   const [menuOpen, setMenuOpen] = useState(false);
@@ -59,20 +61,24 @@ const NavigationBar = () => {
 
           <div>
 
-            {!user?
-            /* //login in button will display when user is not log in */
-            <button className={styles.loginbutton}>
-              <NavLink to="/login">Login</NavLink>
-            </button>:
-            /* logout and avater will display when user is log in  */
-            <div className={styles.avatar__logout}>
-              <img
-                src={imageURL}
-                alt=""
-                className={styles.avatar}
-              />
-              <button className={styles.loginbutton} onClick={logOut}>LogOut</button>
-            </div>}
+            {!user ? (
+              /* //login in button will display when user is not log in */
+              <button className={styles.loginbutton}>
+                <NavLink to="/login">Login</NavLink>
+              </button>
+            ) : (
+              /* logout and avater will display when user is log in  */
+              <div className={styles.avatar__logout}>
+                <img
+                  src={imageURL}
+                  alt=""
+                  className={styles.avatar}
+                />
+                <button className={styles.loginbutton} onClick={logOut}>
+                  LogOut
+                </button>
+              </div>
+            )}
 
           </div>
 
