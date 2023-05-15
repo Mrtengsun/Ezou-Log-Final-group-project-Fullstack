@@ -92,7 +92,10 @@ const userSchema = new Schema(
     communities: [{ type: Schema.Types.ObjectId, ref: "community" }],
     qrCode: { type: String },
 
-    imgProfile : {type:fotoSchema}
+    imgProfile: { type: fotoSchema },
+    cardId: {
+      type: String,
+    },
   },
 
   {
