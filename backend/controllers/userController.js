@@ -14,7 +14,7 @@ const register = async (req, res, next) => {
     req.body.password = hashPassword;
     const newUser = await User.create(req.body);
 
-    const qrCode = await QRCode.toDataURL(JSON.stringify(newUser));
+    const qrCode = await QRCode.toDataURL(JSON.stringify(newUser._id));
     newUser.qrCode = qrCode;
     await newUser.save();
 
