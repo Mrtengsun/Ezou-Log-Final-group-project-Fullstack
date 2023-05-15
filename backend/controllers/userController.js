@@ -10,6 +10,9 @@ import { compare, hash } from "bcrypt";
 // register a new user
 const register = async (req, res, next) => {
   try {
+    if (req.body.email === "youremail@gmail.com") {
+      req.body.role = "admin";
+    }
     const hashPassword = await hash(req.body.password, 10);
     req.body.password = hashPassword;
     const newUser = await User.create(req.body);
