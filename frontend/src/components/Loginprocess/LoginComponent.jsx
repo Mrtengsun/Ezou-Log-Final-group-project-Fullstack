@@ -6,9 +6,10 @@ import { form } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css'
 
 
-
 const LoginComponent = () => {
+
   const { setUser, setToken, navigate, errors, setErrors } = useContext(CreateaccountCTX);
+
   const userInput = useRef();
   const passwordInput = useRef();
 
@@ -30,8 +31,8 @@ const LoginComponent = () => {
     fetch(`http://localhost:5000/api/user/login`, config)
       .then((res) => res.json())
       .then((result) => {
+        console.log(result);
         if (result.user) {
-
 
           setUser(result.user);
           setToken(result.token);
@@ -39,9 +40,11 @@ const LoginComponent = () => {
           localStorage.setItem("token", JSON.stringify(result.token));
           localStorage.setItem("user", JSON.stringify(result.user));
 
+
           navigate("/")
         } else {
           setErrors(result.message)
+
         }
       })
       .catch((err) => console.log(err));
@@ -53,9 +56,11 @@ const LoginComponent = () => {
         <h1>Login</h1>
         {errors && <p>{errors}</p>}
         <form onSubmit={handleSubmit}>
+
           <div className="inputbox-2">
             <div className="input-container-2">
               <input type="email" placeholder="username" ref={userInput} />
+
               <br /> <br />
               <input
                 type="password"

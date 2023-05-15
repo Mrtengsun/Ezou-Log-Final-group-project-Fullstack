@@ -7,16 +7,17 @@ import QRCode from "qrcode";
 import path from "path";
 import { compare, hash } from "bcrypt";
 
-
 // register a new user
 const register = async (req, res, next) => {
   try {
     const hashPassword = await hash(req.body.password, 10);
     req.body.password = hashPassword;
     const newUser = await User.create(req.body);
+
     const qrCode = await QRCode.toDataURL(JSON.stringify(newUser));
     newUser.qrCode = qrCode;
     await newUser.save();
+
     // sending email to conformed the user email
     const sendingEmail = await sendEmail(
       req.body.email,
@@ -47,6 +48,7 @@ const register = async (req, res, next) => {
       </div>
       </div>`
     );
+
     res.send(newUser);
   } catch (error) {
     console.log(error);
@@ -61,7 +63,7 @@ const conformedEmail = async (req, res, next) => {
       { verified: true }
     );
 
-    res.redirect("https://##########/login");
+    res.redirect("http://localhost:3000/login");
   } catch (error) {
     next(creatErr(401, error));
   }
@@ -70,11 +72,11 @@ const conformedEmail = async (req, res, next) => {
 const logIn = async (req, res, next) => {
   try {
     const { email, password } = req.body;
- 
+
     // Find the user with the matching email
     const loginUser = await User.findOne({ email });
-    if (!loginUser) return next(creatErr(401, " InvInvalid email or "));
 
+    if (!loginUser) return next(creatErr(401, " InvInvalid email or "));
 
     // Check if the password is correct
 
@@ -84,7 +86,6 @@ const logIn = async (req, res, next) => {
       return next(creatErr(401, "InvInvalid email or password"));
     }
     if (!loginUser.verified)
-
       return next(creatErr(404, "please conform your email"));
     const createToken = jwt.sign({ id: loginUser._id }, process.env.SECRET);
 

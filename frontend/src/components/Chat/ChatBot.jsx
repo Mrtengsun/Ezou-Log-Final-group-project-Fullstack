@@ -3,6 +3,7 @@ import { ChatContext } from "../contexts/chatContext.js";
 import "./chatbot.scss";
 import Chat from "./Chat.jsx";
 import { io } from "socket.io-client";
+import { CreateaccountCTX } from "../contexts/CreateaccountCTX.jsx";
 
 const socket = io("http://localhost:5000");
 
@@ -23,9 +24,16 @@ const ChatBot = () => {
     clearValue,
     setClearValue,
   } = useContext(ChatContext);
+  const { token, user } = useContext(CreateaccountCTX);
   const chatClickHandler = () => {
-    setChat(true);
-    setRoom(userName);
+    if (user) {
+      console.log(user);
+      setChat(true);
+      const fullName = `${user.firstName} ${user.lastName}`;
+      console.log(fullName);
+      setUserName(fullName);
+      setRoom(userName);
+    }
   };
   const closeHandler = () => {
     setChat(false);
@@ -59,7 +67,7 @@ const ChatBot = () => {
       setTextList((list) => [...list, data]);
     });
   }, [socket]);
-  console.log(textList);
+  // console.log(textList);
 
   return (
     <div>
@@ -86,7 +94,7 @@ const ChatBot = () => {
               <div key={i}>
                 <div
                   className="chatContent"
-                  id={userName === message.author ? "author" : "admin"}
+                  id={userName !== message.author ? "author" : "admin"}
                 >
                   <h3>{message.message}</h3>
                 </div>

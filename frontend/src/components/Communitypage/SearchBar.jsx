@@ -1,59 +1,47 @@
 import "./searchbar.scss";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { CommunityContext } from "../contexts/communityContext.js";
+import { CreateaccountCTX } from "../contexts/CreateaccountCTX";
 
 const SearchBar = () => {
-  const { searchInput, search, setSearch } = useContext(CommunityContext);
+  const { searchInput, search, setSearch, getSearchInput, setGetSearchInput } =
+    useContext(CommunityContext);
+  const { token } = useContext(CreateaccountCTX);
 
+  const config = {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  };
   const onInputHandler = () => {
     const searchValue = searchInput.current.value;
     setSearch(searchValue);
-    const config = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(searchValue),
-    };
 
-    fetch(`http://localhost:3000/community`, config)
+    fetch(`http://localhost:5000/api/community/`, config)
       .then((res) => {
         return res.json();
       })
       .then((result) => {
-        const output = result.map(item, (i) => (
-          <div key={i}>
-            <h3>{item.title}</h3>
-            <p>{item.description}</p>
-          </div>
-        ));
-        const area = document.getElementsByClassName("search-section");
-        area.createElement("div");
-        area.classList.add("searchResult");
-        area.appendChild(output);
+        const filterOut = result.filter((item) => item.topic.includes(search));
+        setGetSearchInput(filterOut);
+
+        console.log(filterOut);
       })
       .catch((err) => {
         console.log(err, "coming from catch SearchBar");
       });
   };
   const searchPostHandler = () => {
-    const config = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(search),
-    };
-    fetch(`http://localhost:3000/community`, config)
+    fetch(`http://localhost:5000/api/community/`, config)
       .then((res) => {
         return res.json();
       })
       .then((result) => {
-        const output = result.filter((item) => item === search);
-        const area = document.getElementsByClassName("search-section");
-        const outPut = area.createElement("div");
-        outPut.classList.add("searchResult");
-        outPut.appendChild(output);
+        const searchResult = result.filter((item) => item.topic === search);
+        console.log(searchResult);
+        setGetSearchInput(searchResult);
       })
       .catch((err) => {
         console.log(err, "coming from catch SearchBar");
@@ -74,6 +62,17 @@ const SearchBar = () => {
           <i className="fa-solid fa-magnifying-glass" />
         </button>
       </div>
+
+      {getSearchInput && search
+        ? getSearchInput.map((item, i) => (
+            <div className="search-output" key={i}>
+              <div>
+                <h3>{item.topic}</h3>
+              </div>
+              <p>{item.description}</p>
+            </div>
+          ))
+        : ""}
     </div>
   );
 };

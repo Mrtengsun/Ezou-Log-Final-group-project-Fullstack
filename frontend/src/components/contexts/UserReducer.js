@@ -28,11 +28,11 @@ const account = async (prev, action) => {
         },
       });
       const user = await register.json();
+
       if (user._id) {
-        action.navigate("logincomponent");
+        action.navigate("login");
         return;
       }
-      console.log(user);
     } catch (error) {
       console.log(error);
     }
