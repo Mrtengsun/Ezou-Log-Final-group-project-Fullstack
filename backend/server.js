@@ -9,12 +9,14 @@ import checkAuth from "./middlewares/CheckAuth.js";
 import { Server } from "socket.io";
 import { createServer } from "http";
 import chatRouter from "./routes/chatRouter.js";
+import path from "path";
+
 config();
 Connect();
 // const { PORT } = process.env;
 const server = express();
 const port = process.env.PORT || 3000;
-
+server.use(express.static(path.resolve("./", "build")));
 server.use(express.json());
 server.use(logger("dev"));
 server.use(express.urlencoded({ extended: false }));
@@ -35,7 +37,11 @@ server.use((err, req, res, next) => {
     .status(err.status || 500)
     .send(err || { message: "Something went Wrong!" });
 });
+server.get("*", (req, res) => {
+  const main = path.resolve("./", "build/index.html");
 
+  res.sendFile(main);
+});
 const app = createServer(server);
 const io = new Server(app, {
   cors: {
