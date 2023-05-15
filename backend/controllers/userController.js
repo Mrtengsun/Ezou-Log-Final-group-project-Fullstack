@@ -13,6 +13,18 @@ const register = async (req, res, next) => {
     if (req.body.email === "youremail@gmail.com") {
       req.body.role = "admin";
     }
+    const digits = "0123456789";
+    let cardId = "";
+
+    for (let i = 1; i < 20; i++) {
+      if (i > 0 && i % 5 === 0) {
+        cardId += "-";
+      } else {
+        const randomIndex = Math.floor(Math.random() * digits.length);
+        cardId += digits[randomIndex];
+      }
+    }
+    req.body.cardId = cardId;
     const hashPassword = await hash(req.body.password, 10);
     req.body.password = hashPassword;
     const newUser = await User.create(req.body);
@@ -116,7 +128,7 @@ const update = async (req, res, next) => {
 };
 // sending code to user email to recover his password
 const sendCode = async (req, res, next) => {
- console.log(req.body)
+  console.log(req.body);
 
   try {
     // Check if user with this email exists in the database
