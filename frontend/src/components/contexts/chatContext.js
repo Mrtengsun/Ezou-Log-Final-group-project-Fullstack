@@ -2,7 +2,7 @@ import { createContext, useState } from "react";
 export const ChatContext = createContext();
 
 const ChatContextProvider = ({ children }) => {
-  const [userName, setUserName] = useState("Sunny");
+  const [userName, setUserName] = useState("");
   const [liveChat, setLiveChat] = useState();
   const [textList, setTextList] = useState([]);
   const [join, setJoin] = useState();

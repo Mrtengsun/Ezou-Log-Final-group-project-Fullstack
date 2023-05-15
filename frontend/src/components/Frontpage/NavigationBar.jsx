@@ -7,29 +7,23 @@ import { CreateaccountCTX } from "../contexts/CreateaccountCTX";
 import Darkmode from "./DarkMode/DarkMode";
 
 const NavigationBar = () => {
+  const { user, navigate, setUser } = useContext(CreateaccountCTX);
 
-
-
-  const { user,navigate,setUser } = useContext(CreateaccountCTX);
-
-
- const logOut = ()=>{
-  localStorage.removeItem("user")
-  localStorage.removeItem("token")
-  setUser(null)
-  navigate("/")
- }
-
-
+  const logOut = () => {
+    localStorage.removeItem("user");
+    localStorage.removeItem("token");
+    setUser(null);
+    navigate("/");
+  };
 
   const [menuOpen, setMenuOpen] = useState(false);
-  const imageURL= user.imgProfile? `http://localhost:5000/api/user/profile-picture/${user._id}`:`/images/Neytiri_Profilbild.webp`;
+  // const imageURL= user.imgProfile? `http://localhost:5000/api/user/profile-picture/${user._id}`:`/images/Neytiri_Profilbild.webp`;
 
   const logo = () => {
     navigate("/");
   };
   const menuToggler = () => setMenuOpen((p) => !p);
-    const community = user? "/community":"/login"
+  const community = user ? "/community" : "/login";
   return (
     <nav className={styles.nav}>
       <div className={styles.nav__content}>
@@ -60,7 +54,6 @@ const NavigationBar = () => {
           <Darkmode />
 
           <div>
-
             {!user ? (
               /* //login in button will display when user is not log in */
               <button className={styles.loginbutton}>
@@ -70,7 +63,7 @@ const NavigationBar = () => {
               /* logout and avater will display when user is log in  */
               <div className={styles.avatar__logout}>
                 <img
-                  src={imageURL}
+                  //  src={imageURL}
                   alt=""
                   className={styles.avatar}
                 />
@@ -79,7 +72,6 @@ const NavigationBar = () => {
                 </button>
               </div>
             )}
-
           </div>
 
           <button className={styles.__open} onClick={menuToggler}>
