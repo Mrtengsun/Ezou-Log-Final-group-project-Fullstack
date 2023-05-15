@@ -2,6 +2,9 @@ import React, { useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 import "./Loginstyle.scss";
 import { CreateaccountCTX } from "../contexts/CreateaccountCTX";
+import { form } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css'
+
 
 const LoginComponent = () => {
 
@@ -88,6 +91,7 @@ const LoginComponent = () => {
         </form>
       </div>
     </div>
-  );
+   
+  )
 };
 export default LoginComponent;
