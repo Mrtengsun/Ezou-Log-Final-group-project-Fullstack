@@ -7,99 +7,87 @@
   height: 100vh;
   width: 100%;
 
+
   .loginbox-2 {
+    height: 400px;
+    width: 300px;
     box-shadow: 0 0 10px $primary;
     border-radius: 10px;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    align-items: center;
+    flex-direction: column;
 
-    .loginbox {
-      height: 50vh;
-      box-shadow: 0 0 10px $primary;
-      border-radius: 10px;
-      display: flex;
-      background-color: $bg-white;
-      flex-direction: column;
-
-      align-items: center;
-      flex-direction: column;
-      form {
-        padding: 20px;
-      }
-      h1 {
-        font-family: $text-font;
-        color: rgba($primary, 0.5);
-        padding: 1rem;
-      }
-      .inputbox-2 {
-        text-align: center;
-        .input-container-2 {
-          padding-bottom: 2rem;
-          text-align: center;
-
-   input{
-     border: none;
-     box-shadow: 0 0 6px $primary;
-     border-radius: 10px;
-     height:2rem;
-     width: 15rem;
-     text-align: center;
-     font-family: $text-font ;
-     font-weight: bold;
-     font-size: 1.1rem;
+    form {
+      padding: 20px;
     }
- }
-}
-}
-.forgetpass-2{
- display: flex;
- justify-content: space-between;
- align-items: center;
- font-family: $text-font ;
- .account{
-  text-decoration: none;
-  color: $primary;
-  margin-left: 10px;
- }
- .account:hover{
-  color: aqua;
- }
- input{
-  margin: 5px;
-  font-family: $text-font ;
- }
-}
-.register{
- display: flex;
- justify-content: space-evenly;
- align-items: center;
- 
- font-family: $text-font;
 
- .account{
-  text-decoration: none;
-  margin-left: 10px;
-  color: $primary;
-  font-family: $text-font ;
- }
+    .input-container-2 input {
+      padding-bottom: 1rem;
+      text-align: center;
+      border-radius: 10px;
+      width: 250px;
+      border: none;
+      box-shadow: 0 0 10px $primary;
+    }
 
- .account:hover{
-  color: aqua;
- }
+    .forgetpass-2 {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: $text-font ;
+      margin-top: 10px;
 
-}
-.btn{
- background: $primary;
- padding: 0.8rem 1.5rem;
- margin: 2rem;
- border-radius: 10px;
- color: $text-white;
- font-family: $text-font;
- cursor: pointer;
+      .account {
+        text-decoration: none;
+        color: $primary;
+      }
 
- &:hover {
-   color: $text-gray;
-   background-color: rgba($primary, 0.8);
- }
-}
-}
+      .account:hover {
+        color: aqua;
+      }
+
+      input {
+        margin: 5px;
+        font-family: $text-font ;
+      }
+    }
+
+    .register {
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      font-family: $text-font;
+
+      .account {
+        text-decoration: none;
+        margin-left: 10px;
+        color: $primary;
+        font-family: $text-font ;
+      }
+
+      .account:hover {
+        color: aqua;
+      }
+    }
+
+    .btn {
+      background: $primary;
+      padding: 0.8rem 1.5rem;
+      margin-left: 5rem;
+      margin-top: 20px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      color: $text-white;
+      font-family: $text-font;
+      cursor: pointer;
+
+      &:hover {
+        color: $text-gray;
+        background-color: rgba($primary, 0.8);
+      }
+    }
+  }
 }
