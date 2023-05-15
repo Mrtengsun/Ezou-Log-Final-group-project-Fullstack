@@ -23,10 +23,12 @@ const Posts = () => {
     setDeletePost,
     getPost,
     setGetPost,
+    likes,
+    setLikes,
   } = useContext(CommunityContext);
   const { user, token } = useContext(CreateaccountCTX);
 
-  const thumbsHandler = () => {
+  const thumbsHandler = (item) => {
     const sum = "";
 
     if (!thumbsUp) {
@@ -38,15 +40,14 @@ const Posts = () => {
     }
 
     const config = {
-      method: "POST",
+      method: "PUT",
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify(),
     };
 
-    fetch(`http://localhost:5000/api/community/addlike/`, config)
+    fetch(`http://localhost:5000/api/community/addlike/${item._id}`, config)
       .then((res) => {
         return res.json();
       })
@@ -57,12 +58,7 @@ const Posts = () => {
         console.log(err, "coming from Post");
       });
   };
-  // useEffect(() => {
-  //   fetch("http://localhost:5000/api/community/")
-  //     .then((response) => response.json())
-  //     .then((result) => console.log(result))
-  //     .catch((err) => console.log(err));
-  // }, [addPost]);
+
   const commentsHandler = () => {
     const sum = "";
     if (!comment) {
@@ -95,110 +91,142 @@ const Posts = () => {
           new Date(Date.now()).getMinutes(),
       };
       setSendComment((comment) => [...comment, commentData]);
+
+      const config = {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+        body: JSON.stringify(commentData),
+      };
+
+      fetch(
+        `http://localhost:5000/api/community/addcomment/${user._id}`,
+        config
+      )
+        .then((res) => {
+          return res.json();
+        })
+        .then((result) => {
+          console.log(result);
+        })
+        .catch((err) => {
+          console.log(err, "coming from addComment");
+        });
     }
   };
-  const deletePostHandler = (deleting) => {
-    const deleted = getPost.filter((item) => {
-      item.topic !== deleting.topic;
-    });
+
+  const deletePostHandler = (hiding) => {
+    // const deleted = getPost.filter((item) => {
+    //   item._id !== deleting._id;
+    // });
+    //   const config = {
+    //     method: "DELETE",
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //       Authorization: `Bearer ${token}`,
+    //     },
+    //   };
+
+    //   fetch(
+    //     `http://localhost:5000/api/community/deletecomment/${user._id}/${deleting._id}`,
+    //     config
+    //   )
+    //     .then((res) => {
+    //       return res.json();
+    //     })
+    //     .then((result) => {
+    //       console.log(result);
+    //     })
+    //     .catch((err) => {
+    //       console.log(err, "coming from deleteComment");
+    //     });
+    if (hiding) {
+      const hide = document.getElementsByClassName("post");
+      console.log(hide);
+    }
   };
   return (
     getPost &&
-    getPost.map((item, i) => (
-      <div className="post" id="pp" key={i}>
-        <div className="section-left" id="left">
-          <div className="image">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZLYSDVq9-CIJU69RPUN7o5f8NzRq0oMVsvmzAtv5J-WcPsCeB8sRlGETiuNfkxhTnwhc&usqp=CAU"
-              alt=""
-            />
-          </div>
-          <div>
-            <h3>{`${user.firstName} ${user.lastName}`}</h3>
-          </div>
-        </div>
-        <div className="section-right" id="right">
-          <div>
-            <h3 onClick={topicHandler}>{item.topic}</h3>
-
-            <p>{item.description}</p>
-          </div>
-          <div className="clicks">
-            <div onClick={thumbsHandler}>
-              {thumbsUp ? (
-                <i className="fa-solid fa-thumbs-up">
-                  <span style={{ marginLeft: "0.5rem", fontSize: "large" }}>
-                    {thumbSum}
-                  </span>
-                </i>
-              ) : (
-                <i className="fa-regular fa-thumbs-up"></i>
-              )}
+    getPost.map((item, i) => {
+      return (
+        <div className="post" id="pp" key={i}>
+          <div className="section-left" id="left">
+            <div className="image">
+              <img
+                src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZLYSDVq9-CIJU69RPUN7o5f8NzRq0oMVsvmzAtv5J-WcPsCeB8sRlGETiuNfkxhTnwhc&usqp=CAU"
+                alt=""
+              />
             </div>
-
-            <div onClick={commentsHandler}>
-              {comment ? (
-                <i className="fa-solid fa-comment"></i>
-              ) : (
-                <i className="fa-regular fa-comment"></i>
-              )}
+            <div>
+              <h3>{`${user.firstName} ${user.lastName}`}</h3>
             </div>
           </div>
-          {sendComment
-            ? sendComment.map((item, i) => {
-                return (
-                  <div className={i}>
-                    <div>
-                      <h4>
-                        {item.author} {""}
-                        <span style={{ fontSize: "small" }}>{item.time}</span>
-                      </h4>
+          <div className="section-right" id="right">
+            <div>
+              <h3 onClick={topicHandler}>{item.topic}</h3>
 
-                      <p>{item.comment}</p>
-                    </div>
-                    {/* <div className="clicks">
-                    <div onClick={thumbsHandler}>
-                    {thumbsUp ? (
-                      <i className="fa-solid fa-thumbs-up">
-                          <span
-                            style={{ marginLeft: "0.5rem", fontSize: "large" }}
-                          >
-                          {thumbSum}
-                          </span>
-                        </i>
-                      ) : (
-                        <i className="fa-regular fa-thumbs-up"></i>
-                      )}
+              <p>{item.description}</p>
+            </div>
+            <div className="clicks">
+              <div onClick={() => thumbsHandler(item)}>
+                {thumbsUp ? (
+                  <i className="fa-solid fa-thumbs-up">
+                    <span style={{ marginLeft: "0.5rem", fontSize: "large" }}>
+                      {thumbSum}
+                    </span>
+                  </i>
+                ) : (
+                  <i className="fa-regular fa-thumbs-up"></i>
+                )}
+              </div>
+
+              <div onClick={commentsHandler}>
+                {comment ? (
+                  <i className="fa-solid fa-comment"></i>
+                ) : (
+                  <i className="fa-regular fa-comment"></i>
+                )}
+              </div>
+            </div>
+            {sendComment
+              ? sendComment.map((item, i) => {
+                  return (
+                    <div className={i}>
+                      <div>
+                        <h4>
+                          {item.author} {""}
+                          <span style={{ fontSize: "small" }}>{item.time}</span>
+                        </h4>
+
+                        <p>{item.comment}</p>
                       </div>
-                      <div onClick={commentsHandler}>
-                      {comment ? (
-                        <i className="fa-solid fa-comment"></i>
-                        ) : (
-                          <i className="fa-regular fa-comment"></i>
-                          )}
-                          </div>
-                        </div> */}
-                  </div>
-                );
-              })
-            : ""}
-          {comment ? (
-            <div className="commented">
-              <textarea
-                placeholder="Leave a comment"
-                ref={commentInput}
-                onKeyDown={(e) => e.key === "Enter" && sendCommentHandler()}
-              ></textarea>
-            </div>
-          ) : (
-            ""
-          )}
+                    </div>
+                  );
+                })
+              : ""}
+            {comment ? (
+              <div className="commented">
+                <textarea
+                  placeholder="Leave a comment"
+                  ref={commentInput}
+                  onKeyDown={(e) => e.key === "Enter" && sendCommentHandler()}
+                ></textarea>
+              </div>
+            ) : (
+              ""
+            )}
+          </div>
+          <button
+            className="closeCross"
+            onClick={() => deletePostHandler(item)}
+          >
+            X
+          </button>
         </div>
-        <button className="closeCross" onClick={() => deletePostHandler(item)}>
-          X
-        </button>
-      </div>
-    ))
+      );
+    })
   );
 };
 export default Posts;
