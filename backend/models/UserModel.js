@@ -73,6 +73,11 @@ const userSchema = new Schema(
       type: Boolean,
       default: false,
     },
+    role: {
+      type: String,
+      enum: ["user", "admin"],
+      default: "user",
+    },
     communities: [{ type: Schema.Types.ObjectId, ref: "community" }],
     qrCode: { type: String },
   },
@@ -88,7 +93,6 @@ const userSchema = new Schema(
     timestamps: true,
   }
 );
-
 
 const User = model("user", userSchema);
 export default User;
