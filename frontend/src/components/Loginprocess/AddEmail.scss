@@ -1,0 +1,61 @@
+@import "../../style/variable.scss";
+
+.covered {
+ display: flex;
+ justify-content: center;
+ align-items: center;
+ height: 100vh;
+ width: 100%;
+
+ .mainbox {
+  height: 50vh;
+  box-shadow: 0 0 10px $primary;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+
+  h1 {
+   font-family: $text-font ;
+   padding: 1.1rem;
+  }
+
+  .input {
+   .btn {
+    width: 100px;
+    border-radius: 10px;
+    background-color: $primary;
+    margin-left: 80px;
+    margin-top: 30px;
+    padding: 5px;
+    text-align: center;
+    font-family: $text-font ;
+   }
+  }
+
+  .email-input {
+   text-align: center;
+   padding: 20px;
+
+   input {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    border: none;
+    box-shadow: 0 0 6px $primary;
+    border-radius: 10px;
+    font-family: $text-font ;
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin: 5px 10px;
+   }
+  }
+ }
+
+ .btn:hover {
+  background-color: $primary;
+  color: white;
+  cursor: pointer;
+ }
+}

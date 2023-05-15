@@ -1,36 +1,33 @@
-import express from 'express';
-import Community from '../models/CommunityModel.js'
+import express from "express";
+import {
+  addComment,
+  addLike,
+  createPost,
+  deleteComment,
+  deleteLike,
+  getAllComment,
+  getAllLike,
+  getAllPosts,
+  updatePost,
+} from "../controllers/communityController.js";
 
-const router = express.Router()
+const router = express.Router();
 
-router.get('/',async(req,res)=>{
- try{
-  const getAllCommune = await Community.find()
-  res.send(getAllCommune)
- }catch(err){
-  console.log(err)
- }
-})
+router.get("/", getAllPosts);
 
+router.post("/", createPost);
 
-router.post('/',async(req,res)=>{
- console.log(req.body)
- try{
-  const newPostCommunity = await Community.create(req.body)
-  res.send(newPostCommunity)
- }catch(error){
-  console.log(error)
- }
-})
+router.put("/addcomment/:id", addComment);
 
+router.put("/addlike/:id", addLike);
+router.get("/comments/:id", getAllComment);
+router.get("/likes/:id", getAllLike);
 
-router.put('/:id',async(req,res)=>{
- const community = req.body.community
- const updateCommunity =await Community.findOneAndUpdate({_id:req.params.id},community)
- res.status(201).send(updateCommunity)
-})
+router.put("/:id", updatePost);
+router.delete("/deletecomment/:id/:commentId", deleteComment);
+router.delete("/unlike/:id", deleteLike);
 
-router.delete('/:id',(req,res)=>{
- res.send('can you delete')
-})
-export default router
+router.delete("/:id", (req, res) => {
+  res.send("can you delete");
+});
+export default router;

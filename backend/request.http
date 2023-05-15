@@ -1,9 +1,80 @@
-GET http://localhost:1200/community
+POST http://localhost:5000/api/user/register
+Content-Type: application/json
+
+{
+    "firstName" : "haha",
+    "lastName" : "kitty",
+    "email": "haha@haha.com",
+    "password": "passsword",
+    "placeOfBirth": "berlin",
+    "gender" : "man",
+    "phoneNumber" : 125465879854554,
+    "profession" : "webdev"
+}
+
+
+###
+POST http://localhost:5000/api/user/login
+Content-Type: application/json
+
+{
+
+    "email": "mrtengsun@gmail.com",
+    "password": "123456"
+    
+}
+
+### add a post 
+
+POST http://localhost:5000/api/community
+Content-Type: application/json
+Authorization: Bearer "please add your token hier" 
+
+
+{
+
+     "topic": "how can i get a job",
+     "description": "please i need some help, can some one tell me how to change password in Tick Tock"
+
+}
+###
+GET  http://localhost:5000/api/community/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY0NWI0YTI2YTQyYWExNjc4MWMzNWM0NSIsImlhdCI6MTY4Mzg5MDEwM30.7_oLSNQqMtM5fzNM_am8fJlKgCIs-uzUAO8FoyfxFk4
+
+### add the comment in the post to the post conection
+PUT http://localhost:5000/api/community/addcomment/644030e929497b77bb19982e
+Content-Type: application/json
+Authorization: Bearer "please add your token hier" 
+
+{
+     "text": "you should ask ChatGTP hhhhhhhh"
+     
+}
+
+### add the user who like the post to the post conection
+PUT http://localhost:5000/api/community/addlike/644030e929497b77bb19982e
+Content-Type: application/json
+Authorization: Bearer "please add your token hier" 
+
+
+
+
+
+### getting all coment from one post
+GET http://localhost:5000/api/community/comments/644030e929497b77bb19982e
+Authorization: Bearer "please add your token hier" 
+
+### getting all name of the users who like the post from one post 
+GET http://localhost:5000/api/community/likes/644030e929497b77bb19982e
+Authorization: Bearer "please add your token hier" 
 
 
 
 ###
-
-POST http://localhost:1200/community
-Content-Type: application/json
+DELETE  http://localhost:5000/api/community/deletecomment/644030e929497b77bb19982e/64404e19dd7259172b9fed88
+Authorization: Bearer "please add your token hier" 
+###
+DELETE  http://localhost:5000/api/community/unlike/644030e929497b77bb19982e
+Authorization: Bearer "please add your token hier" 
 
