@@ -34,7 +34,7 @@ const AddPost = () => {
       body: JSON.stringify(addPostData),
     };
 
-    fetch("http://localhost:5000/api/community/", config)
+    fetch("/api/community/", config)
       .then((res) => {
         return res.json();
       })
@@ -55,7 +55,7 @@ const AddPost = () => {
         Authorization: `Bearer ${token}`,
       },
     };
-    fetch("http://localhost:5000/api/community/", config)
+    fetch("/api/community/", config)
       .then((response) => response.json())
       .then((result) => setGetPost(result))
       .catch((err) => console.log(err));

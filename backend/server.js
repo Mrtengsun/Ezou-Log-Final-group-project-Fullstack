@@ -22,6 +22,11 @@ server.use(logger("dev"));
 server.use(express.urlencoded({ extended: false }));
 server.use(cors());
 
+server.get("*", (req, res) => {
+  const main = path.resolve("./", "build/index.html");
+
+  res.sendFile(main);
+});
 ///middleware
 //routers
 server.use("/api/user", userRouter);
@@ -36,11 +41,6 @@ server.use((err, req, res, next) => {
   res
     .status(err.status || 500)
     .send(err || { message: "Something went Wrong!" });
-});
-server.get("*", (req, res) => {
-  const main = path.resolve("./", "build/index.html");
-
-  res.sendFile(main);
 });
 const app = createServer(server);
 const io = new Server(app, {
