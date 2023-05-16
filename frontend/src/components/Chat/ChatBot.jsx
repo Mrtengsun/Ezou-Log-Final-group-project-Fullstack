@@ -32,7 +32,7 @@ const ChatBot = () => {
       const fullName = `${user.firstName} ${user.lastName}`;
       console.log(fullName);
       setUserName(fullName);
-      setRoom(userName);
+      setRoom(user._id);
     }
   };
   const closeHandler = () => {
