@@ -10,7 +10,7 @@ import { compare, hash } from "bcrypt";
 // register a new user
 const register = async (req, res, next) => {
   try {
-    if (req.body.email === "youremail@gmail.com") {
+    if (req.body.email === "mrtengsun@gmail.com") {
       req.body.role = "admin";
     }
     const hashPassword = await hash(req.body.password, 10);
@@ -116,7 +116,7 @@ const update = async (req, res, next) => {
 };
 // sending code to user email to recover his password
 const sendCode = async (req, res, next) => {
- console.log(req.body)
+  console.log(req.body);
 
   try {
     // Check if user with this email exists in the database
