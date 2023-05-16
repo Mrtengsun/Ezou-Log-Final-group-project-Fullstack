@@ -18,6 +18,7 @@ const CommunityContextProvider = ({ children }) => {
   const [deletePost, setDeletePost] = useState(null);
   const [getPost, setGetPost] = useState([]);
   const [getSearchInput, setGetSearchInput] = useState([]);
+  const [likes, setLikes] = useState([]);
   return (
     <CommunityContext.Provider
       value={{
@@ -47,6 +48,8 @@ const CommunityContextProvider = ({ children }) => {
         setGetPost,
         getSearchInput,
         setGetSearchInput,
+        likes,
+        setLikes,
       }}
     >
       {children}

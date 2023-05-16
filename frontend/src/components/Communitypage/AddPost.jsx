@@ -4,7 +4,6 @@ import { CommunityContext } from "../contexts/communityContext.js";
 import CommunityPopUp from "./CommunityPopUp.jsx";
 import Posts from "./Posts";
 import { CreateaccountCTX } from "../contexts/CreateaccountCTX";
-
 const AddPost = () => {
   const {
     popUp,
