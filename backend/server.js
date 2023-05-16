@@ -16,7 +16,7 @@ Connect();
 // const { PORT } = process.env;
 const server = express();
 const port = process.env.PORT || 3000;
-server.use(express.static(path.resolve("./", "build")));
+server.use(express.static(path.resolve("./", "public")));
 server.use(express.json());
 server.use(logger("dev"));
 server.use(express.urlencoded({ extended: false }));
@@ -38,7 +38,7 @@ server.use((err, req, res, next) => {
     .send(err || { message: "Something went Wrong!" });
 });
 server.get("*", (req, res) => {
-  const main = path.resolve("./", "build/index.html");
+  const main = path.resolve("./", "public/index.html");
 
   res.sendFile(main);
 });
