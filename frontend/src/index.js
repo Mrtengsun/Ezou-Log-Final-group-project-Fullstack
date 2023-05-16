@@ -5,8 +5,8 @@ import App from "./App.jsx";
 import CommunityContextProvider from "./components/contexts/communityContext.js";
 import LoginContextProvider from "./components/contexts/LoginContext.jsx";
 import CreateaccountCTXProvider from "./components/contexts/CreateaccountCTX.jsx";
-
 import ChatContextProvider from "./components/contexts/chatContext.js";
+import 'bootstrap/dist/css/bootstrap.min.css'
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 

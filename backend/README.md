@@ -29,16 +29,18 @@
 
 ### Websites
 
-- author
-  -Name
-  -API address
-  - Timestamps
+-user
+-Name of the website
+-API address
+
+- Timestamps
+<!--
 
 ### Sensitive Info
 
 - author
   -Official Documents :{--Passport, --Id,--DriverLicense, --Insurance, --Bankcard}
-  - Timestamps
+  - Timestamps -->
 
 ### Message
 
@@ -47,12 +49,22 @@
 - author
 - Timestamps
 
+### Live support Chat
+
+-User
+-Messages
+
+### Community
+
+-User
+-Messages
+
 ### Routes
 
--user
--websites
--sensitive info
--Message
+-Users
+-Websites
+-LiveSupport
+-Messages
 
 ## API Design
 

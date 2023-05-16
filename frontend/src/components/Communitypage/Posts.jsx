@@ -47,7 +47,7 @@ const Posts = () => {
       },
     };
 
-    fetch(`http://localhost:5000/api/community/addlike/${item._id}`, config)
+    fetch(`/api/community/addlike/${item._id}`, config)
       .then((res) => {
         return res.json();
       })
@@ -101,10 +101,7 @@ const Posts = () => {
         body: JSON.stringify(commentData),
       };
 
-      fetch(
-        `http://localhost:5000/api/community/addcomment/${user._id}`,
-        config
-      )
+      fetch(`/api/community/addcomment/${user._id}`, config)
         .then((res) => {
           return res.json();
         })

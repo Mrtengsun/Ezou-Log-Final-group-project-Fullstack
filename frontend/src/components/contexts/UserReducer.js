@@ -20,7 +20,7 @@ const account = async (prev, action) => {
 
         profession: action.profession.current.value,
       };
-      const register = await fetch("http://localhost:5000/api/user/register", {
+      const register = await fetch("/api/user/register", {
         method: "POST",
         body: JSON.stringify(data),
         headers: {

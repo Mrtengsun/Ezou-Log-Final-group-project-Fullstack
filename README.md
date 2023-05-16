@@ -6,7 +6,7 @@
 
 -Ezou Log is a service provider and an E-identity card, that helps clients to manage personal online data in a secure environment to be able to access it in every website for registration.
 
--For example, in order to login all websites directly with automized registration, the client only need onetime registration to gain an E-Identity card issued by Ezou Log,
+-For example, in order to login all websites directly with automized registration, the client only need onetime registration to gain an E-Identity card issued by Ezou Log.
 
 # Required Data
 

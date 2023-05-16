@@ -13,11 +13,23 @@ const register = async (req, res, next) => {
     if (req.body.email === "mrtengsun@gmail.com") {
       req.body.role = "admin";
     }
+    const digits = "0123456789";
+    let cardId = "";
+
+    for (let i = 1; i < 20; i++) {
+      if (i > 0 && i % 5 === 0) {
+        cardId += "-";
+      } else {
+        const randomIndex = Math.floor(Math.random() * digits.length);
+        cardId += digits[randomIndex];
+      }
+    }
+    req.body.cardId = cardId;
     const hashPassword = await hash(req.body.password, 10);
     req.body.password = hashPassword;
     const newUser = await User.create(req.body);
 
-    const qrCode = await QRCode.toDataURL(JSON.stringify(newUser));
+    const qrCode = await QRCode.toDataURL(JSON.stringify(newUser._id));
     newUser.qrCode = qrCode;
     await newUser.save();
 
