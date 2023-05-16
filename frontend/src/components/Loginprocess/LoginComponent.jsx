@@ -28,7 +28,7 @@ const LoginComponent = () => {
       body: JSON.stringify(loginData),
     };
 
-    fetch(`http://localhost:5000/api/user/login`, config)
+    fetch(`/api/user/login`, config)
       .then((res) => res.json())
       .then((result) => {
         console.log(result);

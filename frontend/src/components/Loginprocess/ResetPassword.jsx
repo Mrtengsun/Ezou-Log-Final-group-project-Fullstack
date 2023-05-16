@@ -32,7 +32,7 @@ import { CreateaccountCTX } from '../contexts/CreateaccountCTX'
       'Content-type':'application/json',
       }
      }
- fetch(`http://localhost:5000/api/user/reset-password`,config)
+ fetch(`/api/user/reset-password`,config)
 .then(res=>res.json()
 )
 .then(result=>{

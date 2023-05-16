@@ -14,7 +14,7 @@ const ForgetPassword = () => {
   const handleSubmit = (e) => {
 e.preventDefault()
 console.log(email)
-    fetch(`http://localhost:5000/api/user/send-code/${email}`)
+    fetch(`/api/user/send-code/${email}`)
       .then(res => 
        res.json()
      ).then(result=>{

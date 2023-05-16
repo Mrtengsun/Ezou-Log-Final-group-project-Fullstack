@@ -20,7 +20,7 @@ const CardComponents = () => {
           <div style={{ height: "auto", margin: "0 auto", maxWidth: 250, width: "100%" }}>
     <QRCode
     size={256}
-    style={{ height: "auto", maxWidth: "100%", width: "100%" }}
+    style={{ height: "auto", maxWidth: "80%", width: "80%" }}
     value={userQrcode}
     viewBox={`0 0 256 256`}
     />
@@ -29,7 +29,7 @@ const CardComponents = () => {
             <h4>UserName</h4>
             <h3>{userName}</h3>
             <h4>Card Number</h4>
-            <h3>{userCardid}</h3>
+            <h3 className={styles.cardNumber}>{userCardid}</h3>
           </div>
         </div>
         <div className={styles.back}>

@@ -5,8 +5,8 @@ import Chat from "./Chat.jsx";
 import { io } from "socket.io-client";
 import { CreateaccountCTX } from "../contexts/CreateaccountCTX.jsx";
 
-const socket = io("http://localhost:5000");
-
+// const socket = io("http://localhost:5000");
+ const socket = io()
 const ChatBot = () => {
   const {
     chat,

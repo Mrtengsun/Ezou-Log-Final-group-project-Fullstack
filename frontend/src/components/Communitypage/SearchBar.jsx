@@ -19,7 +19,7 @@ const SearchBar = () => {
     const searchValue = searchInput.current.value;
     setSearch(searchValue);
 
-    fetch(`http://localhost:5000/api/community/`, config)
+    fetch(`/api/community/`, config)
       .then((res) => {
         return res.json();
       })
@@ -34,7 +34,7 @@ const SearchBar = () => {
       });
   };
   const searchPostHandler = () => {
-    fetch(`http://localhost:5000/api/community/`, config)
+    fetch(`/api/community/`, config)
       .then((res) => {
         return res.json();
       })
