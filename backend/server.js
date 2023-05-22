@@ -24,7 +24,7 @@ server.use(express.json());
 server.use(logger("dev"));
 server.use(express.urlencoded({ extended: false }));
 server.use(express.static(join(__dirname, "./build")))
-//server.use(cors());
+server.use(cors());
 
 
 
