@@ -11,6 +11,7 @@ import {
   updatePassword,
   profilePicture,
   updateProfilePicture,
+  thirdPartylogin,
 } from "../controllers/userController.js";
 import checkAuth from "../middlewares/CheckAuth.js";
 import emailValidator from "../middlewares/EmailValidator.js";
@@ -23,6 +24,8 @@ const fotoProfileMiddleWare = upload.fields([
 router.post("/register", emailValidator, register);
 
 router.get("/register", conformedEmail);
+
+router.post("/thirdpartylogin",thirdPartylogin);
 
 router.post("/login", logIn);
 router.put("/update", checkAuth, update);

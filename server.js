@@ -9,25 +9,20 @@ import checkAuth from "./middlewares/CheckAuth.js";
 import { Server } from "socket.io";
 import { createServer } from "http";
 import chatRouter from "./routes/chatRouter.js";
-import {dirname, join} from 'path'
+import { dirname, join } from "path";
 import { fileURLToPath } from "url";
-const __dirname = dirname(fileURLToPath(import.meta.url))
+const __dirname = dirname(fileURLToPath(import.meta.url));
 config();
 Connect();
 // const { PORT } = process.env;
 const server = express();
 const port = process.env.PORT || 3000;
 
-
-
 server.use(express.json());
 server.use(logger("dev"));
 server.use(express.urlencoded({ extended: false }));
-server.use(express.static(join(__dirname, "./build")))
-//server.use(cors());
-
-
-
+server.use(express.static(join(__dirname, "./build")));
+// server.use(cors());
 
 ///middleware
 //routers
@@ -37,7 +32,7 @@ server.use("api/chat", chatRouter);
 
 server.get("*", (req, res) => {
   //const main = path.resolve("./", "build/index.html");
-  res.sendFile(join(__dirname, './build/index.html'))
+  res.sendFile(join(__dirname, "./build/index.html"));
   // res.sendFile(main);
   //res.send("hallo world")
 });
@@ -52,8 +47,6 @@ server.use((err, req, res, next) => {
     .send(err || { message: "Something went Wrong!" });
 });
 
-
-
 const app = createServer(server);
 // const io = new Server(app, {
 //   cors: {
@@ -62,7 +55,7 @@ const app = createServer(server);
 //   },
 // });
 
-const io = new Server(app)
+const io = new Server(app);
 io.on("connection", (socket) => {
   console.log("made socket connection", socket.id);
   socket.on("joinRoom", (data) => {
