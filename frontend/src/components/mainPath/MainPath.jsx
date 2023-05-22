@@ -12,25 +12,20 @@ import ForgetPassword from "../Loginprocess/ForgetPassword.jsx";
 import ChatBot from "../Chat/ChatBot.jsx";
 import OtpInput from "../Loginprocess/OtpInput.jsx";
 
-
-
-
 import AddEmail from "../Loginprocess/AddEmail.jsx";
 import Uploads from "../Uploads/Uploads.jsx";
 import UpdateProfile from "../../Update/UpdateProfile.jsx";
-import DataUpdate from "../../Update/DataUpdate/DataUpdate.jsx";
 
 const MainPath = () => {
-  
   return (
     <div>
       <NavigationBar />
 
       <Routes>
-      <Route path="/updateprofile" element={<UpdateProfile />} />
-      <Route path="/dataupdat" element={<DataUpdate/>} />
+        <Route path="/updateprofile" element={<UpdateProfile />} />
+
         <Route path="/uploads" element={<Uploads />} />
-        <Route path="/homepage" element={<FrontPage />}/>
+        <Route path="/homepage" element={<FrontPage />} />
         <Route path="/community" element={<CommunityPage />} />
         <Route path="/aboutus" element={<AboutUs />} />
         <Route path="/support" element={<ChatBot />} />
@@ -40,12 +35,9 @@ const MainPath = () => {
 
         <Route path="*" element={<FrontPage />} />
 
-
-        <Route path="/otpinput" element={<OtpInput/>} />
-        <Route path="/AddEmail" element={<AddEmail/>} />
+        <Route path="/otpinput" element={<OtpInput />} />
+        <Route path="/AddEmail" element={<AddEmail />} />
         <Route path="/register" element={<CreateAccount />} />
-
-
       </Routes>
       <ChatBot />
 
