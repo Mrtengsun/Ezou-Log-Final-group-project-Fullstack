@@ -9,7 +9,9 @@ import {
   getAllLike,
   getAllPosts,
   updatePost,
+  deletePost,
 } from "../controllers/communityController.js";
+import Community from "../models/CommunityModel.js";
 
 const router = express.Router();
 
@@ -27,7 +29,5 @@ router.put("/:id", updatePost);
 router.delete("/deletecomment/:id/:commentId", deleteComment);
 router.delete("/unlike/:id", deleteLike);
 
-router.delete("/:id", (req, res) => {
-  res.send("can you delete");
-});
+router.delete("/:id", deletePost);
 export default router;

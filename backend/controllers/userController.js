@@ -103,6 +103,9 @@ const logIn = async (req, res, next) => {
     if (!loginUser.verified)
       return next(creatErr(404, "please conform your email"));
     const createToken = jwt.sign({ id: loginUser._id }, process.env.SECRET);
+    const user = loginUser;
+    delete user.password;
+    req.session.user = user;
 
     res.send({ user: loginUser, token: createToken });
   } catch (error) {
