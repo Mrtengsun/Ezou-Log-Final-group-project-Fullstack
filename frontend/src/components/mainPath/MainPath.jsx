@@ -12,20 +12,24 @@ import ForgetPassword from "../Loginprocess/ForgetPassword.jsx";
 import ChatBot from "../Chat/ChatBot.jsx";
 import OtpInput from "../Loginprocess/OtpInput.jsx";
 
-import { useContext } from "react";
-import { CreateaccountCTX } from "../contexts/CreateaccountCTX.jsx";
+
 
 
 import AddEmail from "../Loginprocess/AddEmail.jsx";
+import Uploads from "../Uploads/Uploads.jsx";
+import UpdateProfile from "../../Update/UpdateProfile.jsx";
+import DataUpdate from "../../Update/DataUpdate/DataUpdate.jsx";
 
 const MainPath = () => {
-  const {user} = useContext(CreateaccountCTX)
+  
   return (
     <div>
       <NavigationBar />
 
       <Routes>
-        <Route path="/" element={ user? <CommunityPage/>:<FrontPage />} />
+      <Route path="/updateprofile" element={<UpdateProfile />} />
+      <Route path="/dataupdat" element={<DataUpdate/>} />
+        <Route path="/uploads" element={<Uploads />} />
         <Route path="/homepage" element={<FrontPage />}/>
         <Route path="/community" element={<CommunityPage />} />
         <Route path="/aboutus" element={<AboutUs />} />
