@@ -101,10 +101,7 @@ const Posts = () => {
         body: JSON.stringify(commentData),
       };
 
-      fetch(
-        `/api/community/addcomment/${user._id}`,
-        config
-      )
+      fetch(`/api/community/addcomment/${user._id}`, config)
         .then((res) => {
           return res.json();
         })

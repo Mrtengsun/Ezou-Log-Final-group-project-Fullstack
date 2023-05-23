@@ -110,6 +110,14 @@ const deleteLike = async (req, res, next) => {
     next(creatErr(401, error));
   }
 };
+const deletePost = async (req, res, next) => {
+  try {
+    const deletedPost = await Community.findByIdAndDelete(req.params.id);
+    res.send(deletedPost);
+  } catch (error) {
+    next(creatErr(401, error));
+  }
+};
 
 export {
   getAllPosts,
@@ -121,4 +129,5 @@ export {
   updatePost,
   deleteComment,
   deleteLike,
+  deletePost,
 };

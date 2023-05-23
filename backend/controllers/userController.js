@@ -10,7 +10,7 @@ import { compare, hash } from "bcrypt";
 // register a new user
 const register = async (req, res, next) => {
   try {
-    if (req.body.email === "youremail@gmail.com") {
+    if (req.body.email === "mrtengsun@gmail.com") {
       req.body.role = "admin";
     }
     const digits = "0123456789";
@@ -103,6 +103,9 @@ const logIn = async (req, res, next) => {
     if (!loginUser.verified)
       return next(creatErr(404, "please conform your email"));
     const createToken = jwt.sign({ id: loginUser._id }, process.env.SECRET);
+    const user = loginUser;
+    delete user.password;
+    req.session.user = user;
 
     res.send({ user: loginUser, token: createToken });
   } catch (error) {
