@@ -9,9 +9,9 @@ import checkAuth from "./middlewares/CheckAuth.js";
 import { Server } from "socket.io";
 import { createServer } from "http";
 import chatRouter from "./routes/chatRouter.js";
-import path, { join } from "path";
-import session from "express-session";
-
+import { dirname, join } from "path";
+import { fileURLToPath } from "url";
+const __dirname = dirname(fileURLToPath(import.meta.url));
 config();
 Connect();
 // const { PORT } = process.env;
@@ -56,10 +56,12 @@ server.use(cors());
 server.use("/api/user", userRouter);
 server.use("/api/community", checkAuth, communityRouter);
 server.use("api/chat", chatRouter);
-server.get("*", (req, res) => {
-  const main = path.resolve("./", "build/index.html");
 
-  res.sendFile(main);
+server.get("*", (req, res) => {
+  //const main = path.resolve("./", "build/index.html");
+  res.sendFile(join(__dirname, "./build/index.html"));
+  // res.sendFile(main);
+  //res.send("hallo world")
 });
 // 404 Page Not Found
 server.use("*", (req, res) => {
@@ -72,14 +74,15 @@ server.use((err, req, res, next) => {
     .send(err || { message: "Something went Wrong!" });
 });
 const app = createServer(server);
-const io = new Server(app, {
-  cors: {
-    origin: "http://localhost:3000",
-    methods: ["GET", "POST"],
-  },
-});
-const adminSocket = {};
+// const io = new Server(app, {
+//   cors: {
+//     origin: "http://localhost:3000",
+//     methods: ["GET", "POST"],
+//   },
+// });
 
+const adminSocket = {};
+const io = new Server(app);
 io.on("connection", (socket) => {
   // console.log("made socket connection", socket.id);
 

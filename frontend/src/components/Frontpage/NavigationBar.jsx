@@ -9,6 +9,11 @@ import Darkmode from "./DarkMode/DarkMode";
 const NavigationBar = () => {
   const { user, navigate, setUser } = useContext(CreateaccountCTX);
 
+const updateProfile =() =>{
+
+  navigate("updateprofile")
+}
+
   const logOut = () => {
     localStorage.removeItem("user");
     localStorage.removeItem("token");
@@ -17,7 +22,8 @@ const NavigationBar = () => {
   };
 
   const [menuOpen, setMenuOpen] = useState(false);
-  // const imageURL= user.imgProfile? `http://localhost:5000/api/user/profile-picture/${user._id}`:`/images/Neytiri_Profilbild.webp`;
+
+  const imageURL= user && user.imgProfile? `/api/user/profile-picture/${user._id}`:`/images/Neytiri_Profilbild.webp`;
 
   const logo = () => {
     navigate("/");
@@ -28,9 +34,9 @@ const NavigationBar = () => {
     <nav className={styles.nav}>
       <div className={styles.nav__content}>
         <div>
-          {/* <span className={styles.logo}>EZOU</span>
+          <span className={styles.logo}>EZOU</span>
           <br />
-          <span className={styles.logo}>LOG</span> */}
+          <span className={styles.logo}>LOG</span>
           {/* <img onClick={logo} src="/images/logo.png" alt="logo" /> */}
         </div>
         <div>
@@ -63,9 +69,11 @@ const NavigationBar = () => {
               /* logout and avater will display when user is log in  */
               <div className={styles.avatar__logout}>
                 <img
-                  //  src={imageURL}
+                   src={imageURL}
+                  onClick={updateProfile}
                   alt=""
                   className={styles.avatar}
+                  
                 />
                 <button className={styles.loginbutton} onClick={logOut}>
                   LogOut

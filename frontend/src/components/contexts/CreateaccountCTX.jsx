@@ -2,17 +2,17 @@ import { useState, createContext, useRef, useReducer } from "react";
 import { useNavigate } from "react-router-dom";
 import account from "./UserReducer";
 
-
 const themeMode = JSON.parse(localStorage.getItem("themeKey")) || "light";
 const existUser = JSON.parse(localStorage.getItem("user")) || null;
 const existtoken = JSON.parse(localStorage.getItem("token")) || null;
 export const CreateaccountCTX = createContext();
 
 const CreateaccountCTXProvider = ({ children }) => {
-  const [code,setCode]=useState(0)
+  const [code, setCode] = useState(0);
   const [token, setToken] = useState(existtoken);
   const [user, setUser] = useState(existUser);
   const [theme, setTheme] = useState(themeMode);
+  const [file, setFile] = useState("");
   const firstName = useRef();
   const lastName = useRef();
   const email = useRef();
@@ -38,8 +38,6 @@ const CreateaccountCTXProvider = ({ children }) => {
 
   const [statereducer, dispatch] = useReducer(account, {});
 
- 
-
   return (
     <div>
       <CreateaccountCTX.Provider
@@ -64,14 +62,15 @@ const CreateaccountCTXProvider = ({ children }) => {
           user,
           setUser,
           navigate,
-
+          file,
+          setFile,
           changeTheme,
           theme,
           setTheme,
           token,
           setToken,
-        code,
-        setCode
+          code,
+          setCode,
         }}
       >
         {children}

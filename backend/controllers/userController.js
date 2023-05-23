@@ -255,6 +255,30 @@ const updateProfilePicture = async (req, res, next) => {
   }
 };
 
+const thirdPartylogin = async (req, res, next) => {
+  try {
+    console.log(req.body);
+    const findUser = await User.findOne({ email: req.body.email });
+    console.log(findUser);
+    if (!findUser) {
+      res.status(404).send({ message: "Usre not found" });
+      return;
+    }
+    const isMatch = await compare(req.body.password, findUser.password);
+
+    if (!isMatch) {
+      return next(creatErr(401, "InvInvalid email or password"));
+    }
+    if (!findUser.verified)
+      return next(creatErr(404, "please conform your email"));
+    const createToken = jwt.sign({ id: findUser._id }, process.env.SECRET);
+
+    res.send({ user: findUser, token: createToken });
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 export {
   register,
   conformedEmail,
@@ -265,4 +289,5 @@ export {
   updatePassword,
   profilePicture,
   updateProfilePicture,
+  thirdPartylogin,
 };
