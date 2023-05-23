@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Status</title>
+  </head>
+  <body>
+    <h1>Login Status</h1>
+    <% if(typeof user !== "undefined"){ %>
+    <h2><%= user.email%></h2>
+    <p>We will send the service B the following data:</p>
+    <ul>
+      <li>
+        Email: <%= user.email%> username: <%= user.username%> Address: <%=
+        user.street%>
+      </li>
+    </ul>
+    <button>Authorize</button>
+    <!-- Small <script> to redirect to Service B with the ingo like:
+    http://www.serviceB/SecritKye?email=email&username=sdgsdg&address=sdgsd 
+    the service B will check the  SecritKye, if true, match... will store the cridits in db if not exist 
+    and redirect user to dashboard / or any  
+    -->
+    <%}else{%>
+    <h2>Not Logind</h2>
+    <p>please Login</p>
+    <form action="">
+      <input type="email" placeholder="Email" /><br />
+      <input type="password" placeholder="Password" />
+      <button>Submit</button>
+    </form>
+    <%}%>
+  </body>
+</html>
